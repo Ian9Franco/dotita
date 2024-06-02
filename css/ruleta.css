@@ -1,0 +1,105 @@
+body {
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.team-generator {
+    text-align: center;
+    /* background-color: var(--background-color, #2c2c2c); */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    /* color: var(--text-color, #ffffff); */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+
+    /* color: var(--button-text-color, #e61c1c); */
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+
+
+.team-generator button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #8a8a8a;  //* Color de fondo inicial 
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: background-color 0.3s, color 0.3s; /* Añadir transición suave para cambios */
+}
+
+.team-generator button:hover {
+    /* background-color: #25ca7f; */ /* Color de fondo en hover */
+    color: #ffffff; /* Color de texto en hover */
+}
+
+/* button:hover {
+    background-color: var(--button-hover-background-color, #27002c81);
+} */
+
+.team-display {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero {
+    margin: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.hero img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+/* 
+.hero p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-color, #ffffff);
+}
+
+.hero .role {
+    font-size: 14px;
+    color: var(--role-text-color, #b0b0b0);
+} */
+
+.hero .complexity {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.hero img:hover + .complexity {
+    display: block;
+}
+
+
+
+
+
