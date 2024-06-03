@@ -209,13 +209,13 @@ blockquote span img {
 	transform: translateX(-55%) translateY(-550%) rotate(90deg) scaleX(0.3);
 }
 
-.pt-about .price .footer-price .btn-st:before,
+.pt-generadores .price .footer-price .btn-st:before,
 .pt-blog .blog-item .blog-btn .btn-st:before {
 	height: 165%;
     top: -30%;
 }
 
-.pt-about .price .footer-price .btn-st,
+.pt-generadores .price .footer-price .btn-st,
 .pt-blog .blog-item .blog-btn .btn-st {
     font-size: 16px;
 }
@@ -691,9 +691,9 @@ blockquote span img {
 	transition: all .6s cubic-bezier(.5, .2, .2, 1.1);
 }
 
-#about:target .pt-home, 
+#generadores:target .pt-home, 
 #resume:target .pt-home,
-#portfolio:target .pt-home,
+#heroes:target .pt-home,
 #blog:target .pt-home,
 #contact:target .pt-home {
 	-webkit-filter: blur(3px);
@@ -703,17 +703,17 @@ blockquote span img {
 	transition: all .5s ease;
 }
 
-.pt-about, 
+.pt-generadores, 
 .pt-resume, 
-.pt-portfolio, 
+.pt-heroes, 
 .pt-blog,
 .pt-contact {
 	background-color: #0e0f10;
 }
 
-#about:target .pt-about,
+#generadores:target .pt-generadores,
 #resume:target .pt-resume,
-#portfolio:target .pt-portfolio,
+#heroes:target .pt-heroes,
 #blog:target .pt-blog,
 #contact:target .pt-contact {
 	transition-delay: .3s;
@@ -872,9 +872,9 @@ blockquote span img {
 }
 
 
-#about:target .header-main ul li a,
+#generadores:target .header-main ul li a,
 #resume:target .header-main ul li a,
-#portfolio:target .header-main ul li a,
+#heroes:target .header-main ul li a,
 #blog:target .header-main ul li a,
 #contact:target .header-main ul li a {
     -webkit-transform: scale(.8);
@@ -882,9 +882,9 @@ blockquote span img {
     transform: scale(.8);
 } 
 
-#about:target .icon-a svg,
+#generadores:target .icon-a svg,
 #resume:target .icon-r,
-#portfolio:target .icon-p,
+#heroes:target .icon-p,
 #blog:target .icon-b,
 #contact:target .icon-c {
     color: #fff;
@@ -1067,28 +1067,28 @@ blockquote span img {
 --------------------------------- */
 
 /* User Info Block */
-.pt-about .info .photo img {
+.pt-generadores .info .photo img {
 	-webkit-border-radius: 100%;
     border-radius: 100%;
 }
 
-.pt-about .info .loc {
+.pt-generadores .info .loc {
     font-size: 12px;
 	color: #fff;
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
 
-.pt-about .info p {
+.pt-generadores .info p {
 	font-size: 14px;
 	line-height: 24px;
 }
 
-.pt-about .info-icon {
+.pt-generadores .info-icon {
 	padding-top: 45px
 }
 
-.pt-about .info-icon i {
+.pt-generadores .info-icon i {
 	display: flex;
 	float: left;
 	width: 45px;
@@ -1104,25 +1104,25 @@ blockquote span img {
 	margin-right: 15px;
 }
 
-.pt-about .desc-icon h6 {
+.pt-generadores .desc-icon h6 {
 	font-size: 15px;
 	font-weight: 400;
 	line-height: 15px
 }
 
-.pt-about .desc-icon p {
+.pt-generadores .desc-icon p {
 	color: #fff;
 	font-size: 12px;
 	line-height: 21px;
 }
 
-.pt-about .desc-icon {
+.pt-generadores .desc-icon {
 	padding-left: 15px;
 	padding-top: 5px
 }
 
 /* My Interests */
-.pt-about .inter-icon {
+.pt-generadores .inter-icon {
 	position: relative;
 	background: #0e0f10;
 	margin: 20px 0;
@@ -1135,7 +1135,7 @@ blockquote span img {
 	transition: all .3s ease-in-out;
 }
 
-.pt-about .inter-icon:after {
+.pt-generadores .inter-icon:after {
 	content: '';
 	position: absolute;
 	width: 2px;
@@ -1145,11 +1145,11 @@ blockquote span img {
 	background: #070708;
 }
 
-.pt-about .inter-icon:hover {
+.pt-generadores .inter-icon:hover {
 	background: #070708;
 }
 
-.pt-about .inter-icon i {
+.pt-generadores .inter-icon i {
 	position: relative;
 	width: 30px;
 	float: left;
@@ -1161,22 +1161,22 @@ blockquote span img {
 	margin-right: 30px;
 }
 
-.pt-about .desc-inter h6 {
+.pt-generadores .desc-inter h6 {
 	font-size: 15px;
 	font-weight: 100;
 	line-height: 15px
 }
 
-.pt-about .desc-inter {
+.pt-generadores .desc-inter {
 	padding-top: 3px;
 }
 
 /* Service Block */
-.pt-about .service {
+.pt-generadores .service {
 	text-align: center;
 }
 
-.pt-about .service i {
+.pt-generadores .service i {
 	position: relative;
 	width: 70px;
 	height: 70px;
@@ -1188,7 +1188,7 @@ blockquote span img {
 	border-radius: 50%;
 }
 
-.pt-about .service:hover i:after {
+.pt-generadores .service:hover i:after {
 	content: '';
 	position: absolute;
 	width: 60px;
@@ -1201,13 +1201,13 @@ blockquote span img {
 	animation: zoomIn .3s ease;
 }
 
-.pt-about .service h4 {
+.pt-generadores .service h4 {
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
 
 /* Testimonial Block*/
-.pt-about .testimonial-item {
+.pt-generadores .testimonial-item {
 	position: relative;
 	padding: 30px;
     margin: 0 15px;
@@ -1216,7 +1216,7 @@ blockquote span img {
     border-radius: 10px;
 }
 
-.pt-about .testimonial-item:before {
+.pt-generadores .testimonial-item:before {
 	content: "\f10e";
 	font-family: "Font Awesome 5 Free";
 	position: absolute;
@@ -1227,42 +1227,42 @@ blockquote span img {
 	font-weight: 900;
 }
 
-.pt-about .testimonial-item img {
+.pt-generadores .testimonial-item img {
 	width: 80px;
 	margin-right: 20px;
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
 }
 
-.pt-about .testimonial-item .content {
+.pt-generadores .testimonial-item .content {
 	padding-top: 15px;
 }
 
-.pt-about .testimonial-item .content p {
+.pt-generadores .testimonial-item .content p {
 	color: #777;
     font-size: 13px;
     font-weight: 400;
 	padding-top: 10px;
 }
 
-.pt-about .testimonial-item .rating {
+.pt-generadores .testimonial-item .rating {
 	position: absolute;
     top: 75px;
     right: 25px;
 }
 
-.pt-about .testimonial-item .rating li {
+.pt-generadores .testimonial-item .rating li {
 	display: inline-block;
 	color: #fff;
 }
 
 /* Price */
-.pt-about .price {
+.pt-generadores .price {
 	text-align: center;
 	margin-bottom: 80px;
 }
 
-.pt-about .price .head-price:after {
+.pt-generadores .price .head-price:after {
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -1271,7 +1271,7 @@ blockquote span img {
 	background: #0e0f10;
 }
 
-.pt-about .price .head-price i {
+.pt-generadores .price .head-price i {
 	position: absolute;
 	width: 70px;
 	height: 70px;
@@ -1288,7 +1288,7 @@ blockquote span img {
 	transform: translateX(-50%);
 }
 
-.pt-about .price:hover i:after {
+.pt-generadores .price:hover i:after {
 	content: '';
 	position: absolute;
 	width: 60px;
@@ -1302,43 +1302,43 @@ blockquote span img {
 	animation: zoomIn .3s ease;
 }
 
-.pt-about .price .head-price h4 {
+.pt-generadores .price .head-price h4 {
 	font-size: 20px;
 	padding-top: 25px;
 	padding-bottom: 25px;
 }
 
-.pt-about .price .body-price .price-plan .number {
+.pt-generadores .price .body-price .price-plan .number {
 	font-size: 22px;
 	font-weight: 500;
 }
 
-.pt-about .price .body-price .price-plan {
+.pt-generadores .price .body-price .price-plan {
 	padding: 25px 0;
 }
 
-.pt-about .price .body-price .price-plan .currency {
+.pt-generadores .price .body-price .price-plan .currency {
 	position: relative;
 	bottom: 10px;
 	font-size: 15px;
 }
 
-.pt-about .price .body-price .price-plan .period {
+.pt-generadores .price .body-price .price-plan .period {
 	position: relative;
 	bottom: 0;
 	font-size: 14px;
 }
 
-.pt-about .price .list-price ul li {
+.pt-generadores .price .list-price ul li {
 	padding-bottom: 10px;
 }
 
-.pt-about .price .list-price ul li.disable {
+.pt-generadores .price .list-price ul li.disable {
 	color: #777;
 	text-decoration: line-through !important;
 }
 
-.pt-about .price .footer-price {
+.pt-generadores .price .footer-price {
 	padding-top: 15px;
 }
 
@@ -1571,11 +1571,11 @@ blockquote span img {
 		7. Portfolio Section
 --------------------------------- */
 /* Portfolio Filter */
-.pt-portfolio .portfolio-filter {
+.pt-heroes .heroes-filter {
 	text-align: center;
 }
 
-.pt-portfolio .portfolio-filter ul {
+.pt-a .a-filter ul {
 	display: inline-block;
 	margin: 0;
 	-webkit-border-radius: 50px;
@@ -1584,7 +1584,7 @@ blockquote span img {
 	box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, .1);
 }
 
-.pt-portfolio .portfolio-filter ul li {
+.pt-heroes .heroes-filter ul li {
 	position: relative;
 	display: inline-block;
 	cursor: pointer;
@@ -1597,7 +1597,7 @@ blockquote span img {
 	transition: all .3s;
 }
  
-.pt-portfolio .portfolio-filter ul li.active {
+.pt-heroes .heroes-filter ul li.active {
 	color: #0e0f10;
 	background-color: #fff;
 	-webkit-border-radius: 50px;
@@ -1605,7 +1605,7 @@ blockquote span img {
 }
 
 /* Portfolio Item */
-.pt-portfolio .portfolio-items .item figure {
+.pt-heroes .heroes-items .item figure {
 	position: relative;
 	cursor: pointer;
 	background-color: #0e0f10;
@@ -1614,7 +1614,7 @@ blockquote span img {
 	overflow: hidden;
 }
 
-.pt-portfolio .portfolio-items .item figure img {
+.pt-heroes .heroes-items .item figure img {
 	opacity: 1;
 	width: 100%;
 	height: 100%; 
@@ -1624,7 +1624,7 @@ blockquote span img {
 	transition: all .3s;
 }
 
-.pt-portfolio .portfolio-items .item figure figcaption {
+.pt-heroes .heroes-items .item figure figcaption {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -1637,7 +1637,7 @@ blockquote span img {
     color: #fff;
 }
 
-.pt-portfolio .portfolio-items .item figure figcaption a {
+.pt-heroes .heroes-items .item figure figcaption a {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -1645,7 +1645,7 @@ blockquote span img {
 	left: 0;
 }
 
-.pt-portfolio .portfolio-items .item figure figcaption h3 {
+.pt-heroes .heroes-items .item figure figcaption h3 {
 	opacity: 0;
 	color: #fff;
 	font-size: 20px;
@@ -1656,7 +1656,7 @@ blockquote span img {
 	transition: all .3s;
 }
   
-.pt-portfolio .portfolio-items .item figure figcaption p {
+.pt-heroes .heroes-items .item figure figcaption p {
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -1673,7 +1673,7 @@ blockquote span img {
 	transition: all .3s;
 }
 
-.pt-portfolio .portfolio-items .item figure figcaption p:before {
+.pt-heroes .heroes-items .item figure figcaption p:before {
 	content: "\f292";
 	font-family: "Font Awesome 5 Free";
 	position: absolute;
@@ -1683,7 +1683,7 @@ blockquote span img {
 	font-weight: 900;
 }
  
-.pt-portfolio .portfolio-items .item figure figcaption i {
+.pt-heroes .heroes-items .item figure figcaption i {
 	position: absolute;
 	right: 0;
 	bottom: 0;
@@ -1699,25 +1699,25 @@ blockquote span img {
 	transition: all .3s;
 }
  
-.pt-portfolio .portfolio-items .item figure:hover img {
+.pt-heroes .heroes-items .item figure:hover img {
 	opacity: 0.25;
 	-webkit-transform: scale(1.1);
 	-ms-transform: scale(1.1);
 	transform: scale(1.1); 
 }
  
-.pt-portfolio .portfolio-items .item figure:hover h3 {
+.pt-heroes .heroes-items .item figure:hover h3 {
 	opacity: 1;
 }
  
-.pt-portfolio .portfolio-items .item figure:hover p {
+.pt-heroes .heroes-items .item figure:hover p {
 	opacity: 1; 
 	-webkit-transform: translateX(0%);
 	-ms-transform: translateX(0%);
 	transform: translateX(0%);
 }
  
-.pt-portfolio .portfolio-items .item figure:hover i {
+.pt-heroes .heroes-items .item figure:hover i {
 	opacity: 1; 
 	-webkit-transform: translateX(0%);
 	-ms-transform: translateX(0%);
@@ -2545,7 +2545,7 @@ blockquote span img {
 	.pt-home .banner p {
     	font-size: 25px;
 	}
-	.pt-about .btn-st {
+	.pt-generadores .btn-st {
 		margin: 0 0 20px 20px;
 	}
 	.single-wp {
@@ -2586,9 +2586,9 @@ blockquote span img {
 	.page {
 		width: 100%;
 	}
-	#about:target .pt-about,
+	#generadores:target .pt-generadores,
 	#resume:target .pt-resume,
-	#portfolio:target .pt-portfolio,
+	#heroes:target .pt-heroes,
 	#blog:target .pt-blog,
 	#contact:target .pt-contact {
 		-webkit-transform: translateX(0);
@@ -2630,7 +2630,7 @@ blockquote span img {
 	.page .box {
 		padding: 20px;
 	}
-	.pt-about .testimonial-item {
+	.pt-generadores .testimonial-item {
 		padding: 20px;
 	}
 	.blog-nav {
@@ -2661,33 +2661,33 @@ blockquote span img {
 	.pt-home .lang {
 		bottom: 20px;
 	}
-	.pt-about .info .photo img {
+	.pt-generadores .info .photo img {
 		display: block;
     	width: 50%;
     	margin: 0 auto 30px;
 	}
-	.pt-about .testimonial-item:before {
+	.pt-generadores .testimonial-item:before {
 		top: 15px;
 		right: 15px;
 		font-size: 15px;
 	}
-	.pt-about .testimonial-item img {
+	.pt-generadores .testimonial-item img {
 		width: 70px;
 	}
-	.pt-about .testimonial-item .rating {
+	.pt-generadores .testimonial-item .rating {
 		top: 115px;
     	left: 20px;
     }
-	.pt-about .testimonial-item .media {
+	.pt-generadores .testimonial-item .media {
 		margin-bottom: 30px;
 	}
-	.pt-about .testimonial-item .content {
+	.pt-generadores .testimonial-item .content {
     	padding-top: 10px;
 	}
 	.pt-resume .chart {
 		margin: 0 auto 40px;
 	}
-	.pt-portfolio .portfolio-filter ul {
+	.pt-heroes .heroes-filter ul {
 		-webkit-box-shadow: none;
 		box-shadow: none;
 	}

@@ -694,7 +694,7 @@ blockquote span img {
 
 #about:target .pt-home, 
 #resume:target .pt-home,
-#portfolio:target .pt-home,
+#heroes:target .pt-home,
 #blog:target .pt-home,
 #contact:target .pt-home {
 	-webkit-filter: blur(3px);
@@ -704,9 +704,9 @@ blockquote span img {
 	transition: all .5s ease;
 }
 
-.pt-about, 
+.pt-generadores, 
 .pt-resume, 
-.pt-portfolio, 
+.pt-heroes, 
 .pt-blog,
 .pt-contact {
 	background-color: #fff;
@@ -714,7 +714,7 @@ blockquote span img {
 
 #about:target .pt-about,
 #resume:target .pt-resume,
-#portfolio:target .pt-portfolio,
+#heroes:target .pt-heroes,
 #blog:target .pt-blog,
 #contact:target .pt-contact {
 	transition-delay: .3s;
@@ -878,7 +878,7 @@ blockquote span img {
 
 #about:target .header-main ul li a,
 #resume:target .header-main ul li a,
-#portfolio:target .header-main ul li a,
+#heroes:target .header-main ul li a,
 #blog:target .header-main ul li a,
 #contact:target .header-main ul li a {
 	-webkit-transform: scale(.8);
@@ -888,7 +888,7 @@ blockquote span img {
 
 #about:target .icon-a svg,
 #resume:target .icon-r,
-#portfolio:target .icon-p,
+#heroes:target .icon-p,
 #blog:target .icon-b,
 #contact:target .icon-c {
 	color: #fff;
@@ -1567,15 +1567,14 @@ blockquote span img {
 	right: 0px;
 }
 
-/* ---------------------------------
-		7. Portfolio Section
+/* -------------------------------heroes Section
 --------------------------------- */
 /* Portfolio Filter */
-.pt-portfolio .portfolio-filter {
+.pt-heroes .heroes-filter {
 	text-align: center;
 }
 
-.pt-portfolio .portfolio-filter ul {
+.pt-heroes .heroes-filter ul {
 	display: inline-block;
 	margin: 0;
 	-webkit-border-radius: 50px;
@@ -1584,7 +1583,7 @@ blockquote span img {
 	box-shadow: 0px 0px 10px 0px rgba(14, 15, 16, .1);
 }
 
-.pt-portfolio .portfolio-filter ul li {
+.pt-heroes .heroes-filter ul li {
 	position: relative;
 	display: inline-block;
 	cursor: pointer;
@@ -1597,7 +1596,7 @@ blockquote span img {
 	transition: all .3s;
 }
  
-.pt-portfolio .portfolio-filter ul li.active {
+.pt-heroes .heroes-filter ul li.active {
 	color: #fff;
 	background-color: #0e0f10;
 	-webkit-border-radius: 50px;
@@ -1605,7 +1604,7 @@ blockquote span img {
 }
 
 /* Portfolio Item */
-.pt-portfolio .portfolio-items .item figure {
+.pt-heroes .heroes-items .item figure {
 	position: relative;
 	cursor: pointer;
 	background-color: #f0f1f5;
@@ -1614,7 +1613,7 @@ blockquote span img {
 	overflow: hidden;
 }
 
-.pt-portfolio .portfolio-items .item figure img {
+.pt-heroes .heroes-items .item figure img {
 	opacity: 1;
 	width: 100%;
 	height: 100%; 
@@ -1624,7 +1623,7 @@ blockquote span img {
 	transition: all .3s;
 }
 
-.pt-portfolio .portfolio-items .item figure figcaption {
+.pt-heroes .heroes-items .item figure figcaption {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -1637,7 +1636,7 @@ blockquote span img {
     color: #0e0f10;
 }
 
-.pt-portfolio .portfolio-items .item figure figcaption a {
+.pt-heroes .heroes-items .item figure figcaption a {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -1645,7 +1644,7 @@ blockquote span img {
 	left: 0;
 }
 
-.pt-portfolio .portfolio-items .item figure figcaption h3 {
+.pt-heroes .heroes-items .item figure figcaption h3 {
 	opacity: 0;
 	color: #0e0f10;
 	font-size: 20px;
@@ -1656,7 +1655,7 @@ blockquote span img {
 	transition: all .3s;
 }
   
-.pt-portfolio .portfolio-items .item figure figcaption p {
+.pt-heroes .heroes-items .item figure figcaption p {
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -1673,7 +1672,7 @@ blockquote span img {
 	transition: all .3s;
 }
 
-.pt-portfolio .portfolio-items .item figure figcaption p:before {
+.pt-heroes .heroes-items .item figure figcaption p:before {
 	content: "\f292";
 	font-family: "Font Awesome 5 Free";
 	position: absolute;
@@ -1683,7 +1682,7 @@ blockquote span img {
 	font-weight: 900;
 }
  
-.pt-portfolio .portfolio-items .item figure figcaption i {
+.pt-heroes .heroes-items .item figure figcaption i {
 	position: absolute;
 	right: 0;
 	bottom: 0;
@@ -1699,25 +1698,25 @@ blockquote span img {
 	transition: all .3s;
 }
  
-.pt-portfolio .portfolio-items .item figure:hover img {
+.pt-heroes .heroes-items .item figure:hover img {
 	opacity: 0.25;
 	-webkit-transform: scale(1.1);
 	-ms-transform: scale(1.1);
 	transform: scale(1.1); 
 }
  
-.pt-portfolio .portfolio-items .item figure:hover h3 {
+.pt-heroes .heroes-items .item figure:hover h3 {
 	opacity: 1;
 }
  
-.pt-portfolio .portfolio-items .item figure:hover p {
+.pt-heroes .heroes-items .item figure:hover p {
 	opacity: 1; 
 	-webkit-transform: translateX(0%);
 	-ms-transform: translateX(0%);
 	transform: translateX(0%);
 }
  
-.pt-portfolio .portfolio-items .item figure:hover i {
+.pt-heroes .heroes-items .item figure:hover i {
 	opacity: 1; 
 	-webkit-transform: translateX(0%);
 	-ms-transform: translateX(0%);
@@ -2389,7 +2388,7 @@ blockquote span img {
 	}
 	#about:target .pt-about,
 	#resume:target .pt-resume,
-	#portfolio:target .pt-portfolio,
+	#heroes:target .pt-heroes,
 	#blog:target .pt-blog,
 	#contact:target .pt-contact {
 		-webkit-transform: translateX(0);
@@ -2488,7 +2487,7 @@ blockquote span img {
 	.pt-resume .chart {
 		margin: 0 auto 40px;
 	}
-	.pt-portfolio .portfolio-filter ul {
+	.pt-heroes .heroes-filter ul {
 		-webkit-box-shadow: none;
 		box-shadow: none;
 	}

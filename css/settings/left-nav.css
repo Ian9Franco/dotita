@@ -14,9 +14,9 @@
 	right: 20px !important;	
 }
 
-.pt-about, 
+.pt-generadores, 
 .pt-resume, 
-.pt-portfolio, 
+.pt-heroes, 
 .pt-blog,
 .pt-contact {
 	-webkit-transform: translateX(200%) !important;
@@ -24,9 +24,9 @@
 	transform: translateX(200%) !important;
 }
 
-#about:target .pt-about,
+#generadores:target .pt-generadores,
 #resume:target .pt-resume,
-#portfolio:target .pt-portfolio,
+#heroes:target .pt-heroes,
 #blog:target .pt-blog,
 #contact:target .pt-contact {
 	-webkit-transform: translateX(11.1%) !important;
@@ -54,9 +54,9 @@
 	.header-main.on {
         left: 0px !important;
     }
-	#about:target .pt-about,
+	#generadores:target .pt-generadores,
 	#resume:target .pt-resume,
-	#portfolio:target .pt-portfolio,
+	#heroes:target .pt-heroes,
 	#blog:target .pt-blog,
 	#contact:target .pt-contact {
 		-webkit-transform: translateX(0%) !important;

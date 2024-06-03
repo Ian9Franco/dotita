@@ -63,16 +63,16 @@ $(window).on('load', function() {
 	/* -----------------------------------
 			3. Isotope Portfolio Setup
 	----------------------------------- */
-    if( $('.portfolio-items').length ) {
-        var $elements = $(".portfolio-items"),
-            $filters = $('.portfolio-filter ul li');
+    if( $('.heroes-items').length ) {
+        var $elements = $(".heroes-items"),
+            $filters = $('.heroes-filter ul li');
         $elements.isotope();
 
         $filters.on('click', function(){
             $filters.removeClass('active');
             $(this).addClass('active');
             var selector = $(this).data('filter');
-            $(".portfolio-items").isotope({
+            $(".heroes-items").isotope({
                 filter: selector,
                 hiddenStyle: {
                     transform: 'scale(.2) skew(30deg)',
@@ -164,7 +164,7 @@ $(document).ready(function() {
 	/* -----------------------------------
 	      	10. Portfolio Tilt Setup
 	----------------------------------- */
-    $('.pt-portfolio .portfolio-items .item figure').tilt({
+    $('.pt-heroes .heroes-items .item figure').tilt({
         maxTilt: 3,
         glare: true,
         maxGlare: .6,
@@ -174,14 +174,14 @@ $(document).ready(function() {
 	/* -----------------------------------
 	      11. Portfolio Image Link
 	----------------------------------- */
-	$(".portfolio-items .image-link").magnificPopup({
+	$(".heroes-items .image-link").magnificPopup({
 		type: "image"
 	});
 	
 	/* -----------------------------------
 	      12. Portfolio Video Link
 	----------------------------------- */
-	$(".portfolio-items .video-link").magnificPopup({
+	$(".heroes-items .video-link").magnificPopup({
 		type: "iframe"
 	});
 	
