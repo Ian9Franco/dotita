@@ -1,46 +1,84 @@
-function displayHeroes(role) {
+function displayHeroes(attribute) {
     const heroesContainer = document.getElementById('heroes-container');
-    heroesContainer.innerHTML = ''; // Limpiar el contenedor de héroes
-
-    let heroesList = [];
-
-    if (role === '*') {
-        // Si se selecciona "Todos", mostrar todos los héroes
-        for (const category in heroes) {
-            heroesList = heroesList.concat(heroes[category]);
-        }
-    } else {
-        // Si se selecciona un rol específico, mostrar solo los héroes de ese rol
-        heroesList = heroes[role];
-    }
-
-    // Crear elementos HTML para cada héroe y agregarlos al contenedor
-    heroesList.forEach(hero => {
-        const heroElement = document.createElement('div');
-        heroElement.classList.add('col-lg-3', 'col-sm-6', 'hero');
-        heroElement.innerHTML = `
+    heroesContainer.innerHTML = '';
+    
+    const filteredHeroes = attribute === '*' ? heroes : heroes.filter(hero => hero.atributo === attribute);
+    
+    filteredHeroes.forEach(hero => {
+        const heroItem = document.createElement('div');
+        heroItem.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'item');
+        heroItem.innerHTML = `
             <div class="card">
-                <img src="${hero.img}" class="card-img-top" alt="${hero.name}">
-                <div class="card-body">
-                    <h5 class="card-title">${hero.name}</h5>
-                    <p class="card-text">${hero.rol}</p>
-                    <p class="card-text">Complejidad: ${hero.complejidad}</p>
-                </div>
+                <figure>
+                    <img src="${hero.img}" alt="${hero.name}">
+                    <figcaption>
+                        <h3>${hero.name}</h3>
+                        <p>${hero.rol}</p>
+                        <span class="info-icon" data-hero='${JSON.stringify(hero)}'>ℹ️</span>
+                    </figcaption>
+                </figure>
             </div>
         `;
-        heroesContainer.appendChild(heroElement);
+        heroesContainer.appendChild(heroItem);
+    });
+    
+    // Agregar un evento clic al icono de información
+    const infoIcons = document.querySelectorAll('.info-icon');
+    infoIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            const heroData = JSON.parse(icon.getAttribute('data-hero'));
+            // Aquí podrías mostrar más detalles sobre el héroe
+            // Esto podría ser un cuadro modal, una tarjeta emergente, etc.
+            console.log(heroData);
+            // Luego puedes utilizar heroData para mostrar los detalles en una ventana emergente
+        });
     });
 }
 
-// Event listener para los filtros
-document.getElementById('role-filter').addEventListener('click', (e) => {
-    if (e.target.tagName === 'LI') {
-        const filter = e.target.getAttribute('data-filter');
-        document.querySelectorAll('#role-filter li').forEach(li => li.classList.remove('active'));
-        e.target.classList.add('active');
-        displayHeroes(filter);
-    }
+// Resto del código...
+
+// Llamar a la función para mostrar los héroes al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    displayHeroes('*');
+    
+    const filterButtons = document.querySelectorAll('#role-filter li');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            const attribute = button.getAttribute('data-filter');
+            displayHeroes(attribute);
+        });
+    });
 });
 
-// Mostrar todos los héroes al cargar la página
-displayHeroes('*');
+infoIcons.forEach(icon => {
+    icon.addEventListener('click', (event) => {
+        // Detener la propagación del evento para evitar que se active el clic en la figura
+        event.stopPropagation();
+        
+        const heroData = JSON.parse(icon.getAttribute('data-hero'));
+        const modal = document.getElementById('hero-details-modal');
+        const nameElement = document.getElementById('hero-details-name');
+        const roleElement = document.getElementById('hero-details-role');
+        const comboElement = document.getElementById('hero-details-combo');
+        
+        nameElement.textContent = `Nombre: ${heroData.name}`;
+        roleElement.textContent = `Rol: ${heroData.rol}`;
+        comboElement.textContent = `Combo: ${heroData.combo || 'N/A'}`; // Mostrar "N/A" si no hay información de combo
+        
+        modal.style.display = 'block';
+    });
+    
+    // Agregar interacción de hover al icono
+    icon.addEventListener('mouseenter', () => {
+        // Aquí puedes agregar estilos o cualquier otra interacción que desees
+        // Por ejemplo, cambiar el color o el tamaño del icono cuando el usuario pasa el ratón sobre él
+        icon.style.color = 'red';
+    });
+    
+    icon.addEventListener('mouseleave', () => {
+        // Restaurar los estilos cuando el usuario deja de pasar el ratón sobre el icono
+        icon.style.color = ''; // Esto restablece el color a su valor predeterminado
+    });
+});

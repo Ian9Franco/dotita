@@ -23,7 +23,8 @@
 		<!-- CSS Base -->
         <link rel="stylesheet" class="back-color" href="css/style-dark.css">
 		<link rel="stylesheet" href="css/style-demo.css">
-		<link rel="stylesheet" href="css/ruleta.css">
+		<link rel="stylesheet" href="css/generador-team.css">
+		<link rel="stylesheet" href="css/heroeslist.css">
 		
 		<!-- Settings Style -->
 		<link rel="stylesheet" class="posit-nav" href="css/settings/left-nav.css" />
@@ -258,28 +259,14 @@
 
 			 
 			<!-- Resume Section -->
-          	<div class="page pt-resume" data-simplebar>
-            	<section class="container">
-					
-					<!-- Section Title -->
-					<div class="header-page mt-70 mob-mt">
-						<h2>--</h2>
-    					<span></span>
-					</div>
-
-			  	</section>
-         	</div>
-			 
-			<!-- Portfolio Section -->
-          	<div class="page pt-heroes" data-simplebar>
-            	<section class="container">
-					
+			<div class="page pt-heroes" data-simplebar>
+				<section class="container">
 					<!-- Section Title -->
 					<div class="header-page mt-70 mob-mt">
 						<h2>Heroes</h2>
-    					<span></span>
+						<span></span>
 					</div>
-					
+			
 					<!-- Portfolio Filter Row Start -->
 					<div class="row mt-100">
 						<div class="col-lg-12 col-sm-12 heroes-filter">
@@ -292,14 +279,20 @@
 							</ul>
 						</div>
 					</div>
-					<div id="heroes-container" class="row mt-4"></div>
-
-					
-					
-					<!-- Portfolio Item Row Start -->
+					<!-- Portfolio Items Row Start -->
+					<div id="heroes-container" class="row mt-4 heroes-items"></div>
+					<div id="hero-details-modal" class="modal">
+						<div class="modal-content">
+							<span class="close">&times;</span>
+							<h2 id="hero-details-name"></h2>
+							<p id="hero-details-role"></p>
+							<!-- Otros detalles del héroe -->
+						</div>
+					</div>
 				</section>
-
-       	   	</div>
+			</div>
+			
+			
 			 <!-- Blog Section -->
           	<div class="page pt-blog" data-simplebar>
             	<section class="container">

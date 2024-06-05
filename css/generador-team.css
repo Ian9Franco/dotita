@@ -54,14 +54,14 @@ button {
     flex-wrap: wrap;
 }
 
-.hero {
+.team-display {
     margin: 10px;
     text-align: center;
     position: relative;
     gap: 5vw;
 }
 
-.hero img {
+.team-display img {
     width: 100px;
     height: 100px;
     object-fit: cover;
@@ -70,9 +70,8 @@ button {
 }
 
 .hero img:hover {
-    transform: scale(1.1); /* Agranda la imagen un 10% al hacer hover */
+    transform: scale(1.1);
 }
-
 
 .hero .complexity {
     display: none;
@@ -90,7 +89,6 @@ button {
 .hero img:hover + .complexity {
     display: block;
 }
-
 /* animacion nueva */
 
  /* 1nd borde animacion */ 

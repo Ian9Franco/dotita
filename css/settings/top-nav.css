@@ -55,9 +55,9 @@
     height: 85.1%;
 }
 
-.pt-about, 
+.pt-generadores, 
 .pt-resume, 
-.pt-portfolio, 
+.pt-heroes, 
 .pt-blog,
 .pt-contact {
 	-webkit-transform: translateY(200%) !important;
@@ -65,9 +65,9 @@
 	transform: translateY(200%) !important;
 }
 
-#about:target .pt-about,
+#generadores:target .pt-generadores,
 #resume:target .pt-resume,
-#portfolio:target .pt-portfolio,
+#heroes:target .pt-heroes,
 #blog:target .pt-blog,
 #contact:target .pt-contact {
 	-webkit-transform: translateY(17.3%) !important;
@@ -118,9 +118,9 @@
     	padding: 20px 0 !important;
     	border-left: none !important;
     }
-	#about:target .pt-about,
+	#generadores:target .pt-generadores,
 	#resume:target .pt-resume,
-	#portfolio:target .pt-portfolio,
+	#heroes:target .pt-heroes,
 	#blog:target .pt-blog,
 	#contact:target .pt-contact {
 		-webkit-transform: translateY(0%) !important;

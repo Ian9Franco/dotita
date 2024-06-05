@@ -1,6 +1,3 @@
-
-
-
 document.getElementById('generateTeamButton').addEventListener('click', () => {
     const selectedHeroes = new Set();
 
@@ -16,14 +13,6 @@ document.getElementById('generateTeamButton').addEventListener('click', () => {
 
     displayTeam(team);
 });
-
-function getHeroesByRole(criteria, heroes, exclusive = false) {
-    const allHeroes = Object.values(heroes).flat();
-    return allHeroes.filter(hero => {
-        const heroRoles = hero.rol.split(', ');
-        return criteria.some(role => heroRoles.includes(role)) && (!exclusive || heroRoles.length === 1);
-    });
-}
 
 function getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, exclusive = false) {
     const allHeroes = Object.values(heroes).flat();
@@ -62,7 +51,7 @@ function displayTeam(team) {
 }
 
 function changeHero(oldHero, index) {
-    const selectedHeroes = new Set(Array.from(document.querySelectorAll('.hero p'))
+    const selectedHeroes = new Set(Array.from(document.querySelectorAll('.team-display .hero p'))
         .map(p => p.innerText)
         .filter(name => name !== oldHero.name));
         
@@ -71,7 +60,7 @@ function changeHero(oldHero, index) {
 
     const newHero = getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, roleName === 'Apoyo Primario');
 
-    const team = Array.from(document.querySelectorAll('.hero')).map((heroElement, i) => {
+    const team = Array.from(document.querySelectorAll('.team-display .hero')).map((heroElement, i) => {
         if (i === index) return newHero;
         const name = heroElement.querySelector('p').innerText;
         const role = heroElement.querySelector('.role').innerText;
@@ -83,7 +72,7 @@ function changeHero(oldHero, index) {
     displayTeam(team);
 }
 
- function getCriteriaForRole(roleName) {
+function getCriteriaForRole(roleName) {
     switch(roleName) {
         case "Offlane":
             return ["Tanque", "Tanque, Iniciador"];
@@ -123,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
 
 
 
