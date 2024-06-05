@@ -148,6 +148,165 @@ blockquote span img {
 	border-radius: 50%;
 }
 
+/* estilos */
+
+.style-options {
+    width: 180px;
+    position: fixed;
+    right: -180px;
+    top: 28%;
+    background-color: #ffffff;
+    z-index: 1000;
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.style-options.active {
+    right: 0;
+}
+
+.style-options .toggle-btn {
+    position: absolute;
+    top: 0px;
+    left: -40px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px 0 0 30px;
+    border-right: none;
+    cursor: pointer;
+}
+
+.style-options .toggle-btn span {
+    margin: 0;
+    margin: 0 auto;
+    font-size: 23px;
+    color: #0e0f10;
+    line-height: 35px;
+}
+
+.style-options .toggle-btn span i {
+    font-size: 23px;
+    -webkit-animation-name: settings;
+    animation-name: settings;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    color: #0e0f10;
+    line-height: 35px;
+}
+
+.style-options .style-menu {
+    text-align: center;
+    padding: 0;
+}
+
+.style-options .style-menu h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0e0f10;
+}
+
+.style-options .style-menu .style-nav h4,
+.style-options .style-menu .style-back h4 {
+    padding: 0 20px;
+}
+
+.style-options .style-menu .style-nav ul li,
+.style-options .style-menu .style-back ul li {
+    margin-top: -1px;
+    float: left;
+    width: 50%;
+    height: 34px;
+    line-height: 34px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+    text-align: center;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.style-options .style-menu .style-nav ul li a,
+.style-options .style-menu .style-back ul li a {
+    color: #0e0f10;
+    font-weight: 600;
+    display: block;
+}
+
+.style-options .style-menu .style-nav ul li a:hover,
+.style-options .style-menu .style-back ul li a:hover  {
+    color: #8e8e8e;
+}
+
+.style-options .style-menu .style-nav ul li i,
+.style-options .style-menu .style-back ul li i {
+    font-size: 12px;
+}
+
+.style-options .style-menu .style-color {
+    padding: 0 20px;
+}
+
+.style-options .style-menu .style-color ul {
+    margin-top: 10px;
+}
+
+.style-options .style-menu .style-color ul li {
+    display: inline-block;
+}
+
+.style-options .style-menu .style-color ul li a {
+    width: 40px;
+    height: 40px;
+	-webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+@-webkit-keyframes settings {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes settings {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Button Style */
 .btn-st {
 	position: relative;
@@ -239,6 +398,12 @@ blockquote span img {
 	margin: 0;
 	font-size: 13px;
 	font-weight: 600;
+	
+}
+
+#puto-detector {
+	color: #fff;
+	font-size: 3px;
 }
 
 .music-bg .lines {
@@ -255,6 +420,10 @@ blockquote span img {
     width: 7px;
     height: 5px;
     background: #fff;
+}
+.puto-detector p {
+	color: #25ca7f;
+
 }
 
 .audio-on .music-bg .lines span:nth-child(1) {
@@ -2559,6 +2728,9 @@ blockquote span img {
     	-ms-transform: translateX(0);
     	transform: translateX(0);
 	}
+
+
+	}
 	.header-main {
 		width: 90px;
 		background-color: rgba(14, 15, 16, 1);
@@ -2603,7 +2775,8 @@ blockquote span img {
 	.blog-page .blog-container {
 		position: relative;
 	}
-}
+
+
 
 @media screen and (max-width: 575px) {
 	.page .header-box h3 {
@@ -2685,6 +2858,10 @@ blockquote span img {
 		    margin-left: 30px;
 	}
 }
+
+
+
+
 
 @media screen and (min-height: 710px) {
 	.music-bg {

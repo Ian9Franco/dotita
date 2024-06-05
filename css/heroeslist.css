@@ -19,3 +19,7 @@ figcaption h3 {
     opacity: 1;
     transform: translateX(0%);
 }
+
+.puto-detector p{
+    color: yellow;
+}
