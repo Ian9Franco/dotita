@@ -1,102 +1,106 @@
-document.getElementById('generate-combo').addEventListener('click', function() {
-    const comboSize = parseInt(document.getElementById('combo-size').value);
-    const combo = generateCombo(comboSize);
-    displayCombo(combo);
-});
+document.getElementById('combo-size').addEventListener('change', updateCombos);
+document.getElementById('combo-type').addEventListener('change', updateCombos);
 
-function generateCombo(size) {
-    // Definir combinaciones con sinergia
+function updateCombos() {
+    const comboSize = parseInt(document.getElementById('combo-size').value);
+    const comboType = document.getElementById('combo-type').value;
+    const combos = generateCombos(comboSize, comboType);
+    displayCombos(combos);
+}
+function generateCombos(size, type) {
     const combos = {
-        2: [
-            ["Axe", "Skywrath Mage", "Axe usa Berserker's Call para agrupar a los enemigos, permitiendo a Skywrath Mage infligir un gran daño con Mystic Flare."],
-            ["Faceless Void", "Witch Doctor", "Faceless Void atrapa a los enemigos en su Chronosphere, mientras Witch Doctor coloca su Death Ward para causar daño continuo."],
-            ["Magnus", "Phantom Assassin", "Magnus agrupa y aturde a los enemigos con Reverse Polarity, permitiendo que Phantom Assassin los ataque con golpes críticos."],
-            ["Shadow Demon", "Luna", "Shadow Demon usa Disruption para crear copias de Luna, las cuales pueden infligir gran daño gracias a Glaives."],
-            ["Slardar", "Lifestealer", "Slardar aplica Amplify Damage, permitiendo a Lifestealer infligir daño masivo con su Feast y ataques físicos."],
-            ["Enigma", "Lion", "Enigma usa Black Hole para atrapar a los enemigos, mientras Lion lanza su Finger of Death para eliminar a los enemigos atrapados."],
-            ["Crystal Maiden", "Juggernaut", "Crystal Maiden congela a los enemigos con Frostbite, permitiendo a Juggernaut usar Omnislash sin interrupciones."],
-            ["Tidehunter", "Gyrocopter", "Tidehunter aturde a los enemigos con Ravage, mientras Gyrocopter usa Call Down para infligir daño masivo en el área."],
-            ["Sven", "Dark Willow", "Sven aturde a los enemigos con Storm Hammer, permitiendo a Dark Willow usar Bedlam para infligir daño masivo."]
-            ["Pudge", "Dazzle", "Pudge usa Meat Hook para atraer a los enemigos, permitiendo a Dazzle usar Poison Touch y Shadow Wave para infligir daño y curar."],
-            ["Legion Commander", "Skywrath Mage", "Legion Commander usa Duel para inmovilizar a un enemigo, permitiendo a Skywrath Mage infligir daño masivo con Mystic Flare."],
-            ["Bane", "Mirana", "Bane usa Nightmare para inmovilizar a un enemigo, permitiendo a Mirana acertar fácilmente su Sacred Arrow."],
-            ["Venomancer", "Warlock", "Venomancer aplica daño de veneno continuo, mientras Warlock lanza su Chaotic Offering para aturdir y aumentar el daño."],
-            ["Clockwerk", "Skywrath Mage", "Clockwerk atrapa a los enemigos con Power Cogs, permitiendo a Skywrath Mage lanzar Mystic Flare dentro del área atrapada."],
-            ["Earthshaker", "Lina", "Earthshaker utiliza Fissure para aturdir a los enemigos, permitiendo a Lina infligir daño con su habilidad Lighstrike Array."],
-            ["Sand King", "Leshrac", "Sand King inicia con Burrowstrike, mientras Leshrac sigue con Split Earth para aturdir a los enemigos y causar daño masivo."],
-            ["Mirana", "Shadow Demon", "Mirana dispara su Sacred Arrow, mientras Shadow Demon usa Disruption para crear ilusiones que pueden infligir daño adicional."],
-            ["Bloodseeker", "Ogre Magi", "Bloodseeker usa Rupture para forzar al enemigo a moverse, mientras Ogre Magi aumenta el daño con Bloodlust."],
-            ["Windranger", "Jakiro", "Windranger aturde a los enemigos con Shackleshot, permitiendo que Jakiro use Ice Path para mantenerlos en su lugar."]
-        ],
-        3: [
-            ["Enigma", "Sven", "Warlock", "Enigma usa Black Hole para atrapar a los enemigos, Warlock lanza Chaotic Offering para aturdirlos y Sven inflige daño masivo con God's Strength."],
-            ["Tidehunter", "Disruptor", "Kunkka", "Tidehunter aturde a los enemigos con Ravage, Disruptor silencia con Static Storm y Kunkka remata con Ghostship."],
-            ["Earthshaker", "Sand King", "Dark Willow", "Earthshaker usa Echo Slam, Sand King añade más daño con Epicenter y Dark Willow dispersa a los enemigos con Terrorize."],
-            ["Faceless Void", "Drow Ranger", "Snapfire", "Faceless Void usa Chronosphere, Drow Ranger inflige daño desde fuera y Snapfire usa Mortimer Kisses dentro del área."],
-            ["Phoenix", "Mars", "Void Spirit", "Mars usa Arena of Blood, Phoenix usa Supernova y Void Spirit controla el campo con su Astral Step."],
-            ["Elder Titan", "Medusa", "Dark Seer", "Dark Seer agrupa con Vacuum, Elder Titan añade Earth Splitter y Medusa usa Stone Gaze para finalizar."],
-            ["Batrider", "Grimstroke", "Queen of Pain", "Batrider usa Flaming Lasso, Grimstroke enlaza a los enemigos con Soulbind y Queen of Pain elimina con Sonic Wave."],
-            ["Centaur Warrunner", "Jakiro", "Riki", "Centaur aturde con Hoof Stomp, Jakiro usa Macropyre y Riki elimina con Tricks of the Trade."],
-            ["Bane", "Mirana", "Shadow Fiend", "Bane aturde con Fiend's Grip, Mirana añade daño con Sacred Arrow y Shadow Fiend usa Requiem of Souls para finalizar."],
-            ["Lina", "Shadow Shaman", "Terrorblade", "Lina y Shadow Shaman utilizan sus habilidades de control para inmovilizar a los enemigos, permitiendo a Terrorblade infligir gran daño con Metamorphosis."],
-            ["Vengeful Spirit", "Drow Ranger", "Sniper", "Vengeful Spirit reduce la armadura enemiga con Wave of Terror, permitiendo a Drow Ranger y Sniper infligir gran daño a larga distancia."],
-            ["Beastmaster", "Grimstroke", "Doom", "Beastmaster usa Primal Roar para iniciar, Grimstroke enlaza a los enemigos con Soulbind y Doom aplica su habilidad definitiva para silenciar a dos héroes enemigos."],
-            ["Lich", "Winter Wyvern", "Crystal Maiden", "Lich usa Chain Frost para dañar y ralentizar a los enemigos, mientras Winter Wyvern usa Winter's Curse para mantenerlos en su lugar y Crystal Maiden aprovecha con Freezing Field."],
-            ["Bounty Hunter", "Nyx Assassin", "Riki", "Bounty Hunter rastrea a los enemigos, Nyx Assassin los inicia con Vendetta y Riki ataca desde la invisibilidad con Backstab."],
-            ["Dazzle", "Oracle", "Shadow Demon", "Dazzle proporciona protección con Shallow Grave, Oracle usa False Promise para prolongar la supervivencia y Shadow Demon interfiere con Disruption."],
-            ["Underlord", "Earth Spirit", "Elder Titan", "Underlord atrapa a los enemigos con Pit of Malice, mientras Earth Spirit lanza Rolling Boulder para iniciar y Elder Titan usa Earth Splitter para infligir daño masivo."],
-            ["Treant Protector", "Venomancer", "Zeus", "Treant Protector proporciona invisibilidad con Nature's Guise, Venomancer atrapa a los enemigos con Poison Nova y Zeus finaliza con Thundergod's Wrath."],
-            ["Tusk", "Crystal Maiden", "Lich", "Tusk usa Snowball para iniciar, llevando a Crystal Maiden y Lich, quienes lanzan Freezing Field y Chain Frost para un combo devastador."],
-        ]
+        team_fight: {
+            2: [
+                ["Crystal Maiden", "Juggernaut", "Un combo clásico: Crystal Maiden asegura la sostenibilidad con su aura de maná, y Juggernaut ofrece tanto defensa como ofensiva con Blade Fury y Healing Ward. Nova y Freeze junto a Blade Fury son mortales.", "Safelane"],
+                ["Terrorblade", "Dazzle", "Cuando TB tiene poca vida, Dazzle lo salva con Grave, dándole tiempo para hacer Sunder. Buen balance entre un carry duro y un support duro.", "Safelane"],
+                /* ["Tiny", "IO", "IO enlaza a Tiny para aumentar su velocidad de movimiento, velocidad de ataque y regeneración. Usan teleport para kills instantáneos.", "Safelane o Offlane"],
+                ["Void", "Ancient Apparition", "Cuando Void usa su ulti, Ancient Apparition añade su ultimate. Con buena comunicación, pueden hacer wipes de equipo con solo dos jugadores.", "Safelane o Split"],
+                 */["Viper", "Venomancer", "Máximo daño por veneno y ralentización. Los enemigos tendrán dificultades para moverse. Ambos atacan y usan hechizos para hacer que el enemigo casi no pueda moverse.", "Safelane o Offlane"],
+                ["Axe", "Skywrath Mage", "Axe usa Berserker's Call para agrupar a los enemigos, permitiendo a Skywrath Mage infligir un gran daño con Mystic Flare.", "Offlane"],
+                ["Faceless Void", "Witch Doctor", "Faceless Void atrapa a los enemigos en su Chronosphere, mientras Witch Doctor coloca su Death Ward para causar daño continuo.", "Safelane"],
+            ],
+            3: [
+                ["Enigma", "Sven", "Warlock", "Enigma usa Black Hole para atrapar a los enemigos, Warlock lanza Chaotic Offering para aturdirlos y Sven inflige daño masivo con God's Strength.", "Offlane/Safelane"],
+                ["Tidehunter", "Disruptor", "Kunkka", "Tidehunter aturde a los enemigos con Ravage, Disruptor silencia con Static Storm y Kunkka remata con Ghostship.", "Offlane/Safelane"],
+            ],
+        },
+        aura: {
+            2: [
+                ["Undying", "Weaver", "Undying y Weaver causan problemas constantes; Tombstone y Swarm junto con Decay hacen que los enemigos lo pasen mal. Weaver puede farmear y escapar fácilmente.", "Offlane"],
+                ["Undying", "Slark", "Undying y Slark roban todas las estadísticas del enemigo. Con Decay de Undying y los ataques de Slark, el enemigo pierde mucha fuerza y se convierte en un objetivo fácil.", "Offlane o Split"],
+                ["Dazzle", "Beastmaster", "Dazzle usa Weave para reducir la armadura de los enemigos, mientras Beastmaster proporciona auras y control con su Primal Roar.", "Safelane"],
+                ["Vengeful Spirit", "Wraith King", "Vengeful Spirit reduce la armadura con Wave of Terror y proporciona auras, mientras Wraith King es una amenaza constante con Reincarnation.", "Safelane"],
+            ],
+            3: [
+                ["Vengeful Spirit", "Beastmaster", "Underlord", "Vengeful Spirit y Beastmaster proporcionan auras, y Underlord asegura el control del área con Pit of Malice y su ultimate.", "Safelane"],
+                ["Dazzle", "Omniknight", "Wraith King", "Dazzle y Omniknight proporcionan curaciones y auras defensivas, mientras Wraith King actúa como un tanque duradero.", "Safelane"],
+            ],
+        },
+        pick_up: {
+            2: [
+                /* ["Marci", "Crystal Maiden", "Marci y Crystal Maiden logran kills tempranos fácilmente, aprovechando el control de Marci y el daño mágico de Crystal Maiden.", "Offlane"],
+                ["Shadow Shaman", "Juggernaut", "Shadow Shaman atrapa al enemigo con Shackle, permitiendo a Juggernaut infligir un gran daño con Blade Fury.", "Safelane"],
+                 */["Shadow Shaman", "Ursa", "Shadow Shaman atrapa al enemigo con Shackle, permitiendo que Ursa acumule daño rápidamente.", "Safelane"],
+                ["Shadow Shaman", "Lifestealer", "Shadow Shaman atrapa al enemigo con Shackle, permitiendo que Lifestealer lo golpee. Luego, Lifestealer ralentiza al enemigo con Open Wounds.", "Safelane"],
+                ["Witch Doctor", "Juggernaut", "Witch Doctor aturde al enemigo y aplica Maledict, incrementando el daño cuando Juggernaut usa Blade Fury.", "Safelane"],
+                ["Mirana", "Bane", "Bane duerme al enemigo y Mirana le pega con una flecha de larga distancia para kills fáciles. Mirana puede semi-carry para tener impacto suficiente.", "Offlane"],
+                ["Zeus", "Bloodseeker", "Bloodseeker encuentra enemigos con poca vida y Zeus los remata con su ultimate. Abusa del daño del ulti en el early y mid game.", "No la misma línea"],
+                ["Bane", "Razor", "Razor roba el daño del enemigo y Bane duerme al enemigo, manteniendo el link activo y permitiendo que Razor aumente su daño.", "Cualquier línea"],
+                ["Pudge", "Techies", "Techies planta minas secretamente y Pudge atrae al enemigo para kills instantáneos.", "Cualquier línea o roaming"],
+                ["Bounty Hunter", "Queen of Pain", "Bounty Hunter rastrea a los enemigos, facilitando a Queen of Pain cazarlos con su alto daño.", "Safelane"],
+                ["Nyx Assassin", "Invoker", "Nyx Assassin inicia el combo con su aturdimiento, permitiendo a Invoker realizar una combinación devastadora de habilidades.", "Safelane"],
+            ],
+            3: [
+                ["Mirana", "Shadow Demon", "Leshrac", "Shadow Demon inicia con Disruption, Mirana sigue con Sacred Arrow y Leshrac asegura el kill con su daño de área.", "Safelane"],
+                ["Riki", "Lion", "Storm Spirit", "Riki se oculta y ralentiza, Lion aturde y remata con Finger of Death, mientras Storm Spirit salta para asegurar la eliminación.", "Safelane"],
+            ],
+        }
     };
 
-    // Seleccionar un combo aleatorio del tamaño seleccionado
-    const selectedCombos = combos[size];
-    const randomIndex = Math.floor(Math.random() * selectedCombos.length);
-    const selectedCombo = selectedCombos[randomIndex];
+    // Verifica que 'type' y 'size' existan en 'combos'
+    if (!combos[type] || !combos[type][size]) {
+        console.error('Tipo o tamaño de combo no válido');
+        return [];
+    }
 
-    // Obtener los detalles de los héroes seleccionados
-    const comboHeroes = selectedCombo.slice(0, size).map(heroName => heroes.find(hero => hero.name === heroName));
-    const comboExplanation = selectedCombo[size]; // La explicación es el último elemento
-
-    return { heroes: comboHeroes, explanation: comboExplanation };
+    return combos[type][size].map(combo => {
+        if (combo.length < size + 2) {
+            console.error('Combo mal formateado:', combo);
+            return null;
+        }
+        const comboHeroes = combo.slice(0, size).map(heroName => heroes.find(hero => hero.name === heroName));
+        const comboExplanation = combo[size]; // La explicación es el penúltimo elemento
+        const comboLine = combo[size + 1]; // La línea es el último elemento
+        return { heroes: comboHeroes, explanation: comboExplanation, line: comboLine };
+    }).filter(combo => combo !== null);
 }
 
-function displayCombo(combo) {
-    const comboDisplay = document.querySelector('.combo-display');
-    comboDisplay.innerHTML = ''; // Limpiar contenido previo
-
-    const explanationDiv = document.createElement('div');
-    explanationDiv.classList.add('explanation');
-    explanationDiv.innerHTML = `<p><strong>Sinergia:</strong> ${combo.explanation}</p>`;
-    comboDisplay.appendChild(explanationDiv);
-
-    combo.heroes.forEach(hero => {
-        const heroDiv = document.createElement('div');
-        heroDiv.classList.add('hero');
-        heroDiv.innerHTML = `
-            <h2>${hero.name}</h2>
-            <img src="${hero.img}" alt="${hero.name}">
-        `;
-        heroDiv.addEventListener('click', () => showHeroDetails(hero));
-        comboDisplay.appendChild(heroDiv);
-    });
-}
-function createHeroCard(hero) {
+function createHeroCard(hero, comboExplanation, comboLane) {
+    // Crear el contenedor del héroe
     const heroDiv = document.createElement('div');
     heroDiv.classList.add('hero');
-    heroDiv.innerHTML = `
+
+    // Crear el contenedor para la información de la línea
+    const lineContainer = document.createElement('div');
+    lineContainer.classList.add('line-container');
+    lineContainer.innerHTML = `<p><strong>Línea:</strong> ${comboLane}</p>`;
+
+
+    // Agregar el contenedor de la línea antes de la imagen del héroe
+    heroDiv.appendChild(lineContainer);
+
+    // Agregar la imagen del héroe al contenedor
+    heroDiv.innerHTML += `
         <img src="${hero.img}" alt="${hero.name}" class="combo-hero-img">
+        <p><strong>Rol:</strong> ${hero.rol}</p> <!-- Aquí se muestra el rol -->
     `;
 
-    // Crear el contenedor de los detalles
+    // Crear el contenedor de los detalles de sinergia
     const detailsDiv = document.createElement('div');
     detailsDiv.classList.add('hero-details');
     detailsDiv.innerHTML = `
         <div class="hero-details-content">
             <h2>${hero.name}</h2>
-            <p><strong>Rol:</strong> ${hero.rol}</p>
-            <p><strong>Complejidad:</strong> ${hero.complejidad}</p>
             <p><strong>Atributo:</strong> ${hero.atributo}</p>
             <div><strong>Habilidades:</strong></div>
             <ul>
@@ -107,23 +111,76 @@ function createHeroCard(hero) {
             </ul>
         </div>
     `;
+    // Ocultar los detalles por defecto
+    detailsDiv.style.display = 'none';
 
+    // Evento de mouseover para mostrar los detalles al pasar el cursor sobre el héroe
+    heroDiv.addEventListener('mouseover', () => {
+        detailsDiv.style.display = 'block';
+    });
+
+    // Evento de mouseout para ocultar los detalles al retirar el cursor del héroe
+    heroDiv.addEventListener('mouseout', () => {
+        detailsDiv.style.display = 'none';
+    });
+
+    // Agregar los detalles al contenedor del héroe
     heroDiv.appendChild(detailsDiv);
+
+    // Retornar el contenedor del héroe
     return heroDiv;
 }
 
-function displayCombo(combo) {
+
+
+
+function displayCombos(combos) {
     const comboDisplay = document.querySelector('.combo-display');
     comboDisplay.innerHTML = ''; // Limpiar contenido previo
 
-    const explanationDiv = document.createElement('div');
-    explanationDiv.classList.add('explanation');
-    explanationDiv.innerHTML = `<p><strong>Sinergia:</strong> ${combo.explanation}</p>`;
-    comboDisplay.appendChild(explanationDiv);
+    combos.forEach(combo => {
+        // Crear un div para cada combo
+        const comboDiv = document.createElement('div');
+        comboDiv.classList.add('combo'); // Agregar clase para estilo de combo
 
-    combo.heroes.forEach(hero => {
-        const heroCard = createHeroCard(hero);
-        comboDisplay.appendChild(heroCard);
+        // Crear el botón para explicar el combo
+        const explainButton = document.createElement('button');
+        explainButton.textContent = 'Explicar';
+        comboDiv.appendChild(explainButton);
+
+        // Crear el div para la explicación del combo
+        const explanationDiv = document.createElement('div');
+        explanationDiv.classList.add('explanation');
+        explanationDiv.innerHTML = `<p><strong>Sinergia:</strong> ${combo.explanation}</p>`;
+        comboDiv.appendChild(explanationDiv);
+        // Ocultar la explicación por defecto
+        explanationDiv.style.display = 'none';
+
+        // Evento de clic para mostrar u ocultar la explicación del combo
+        explainButton.addEventListener('click', () => {
+            if (explanationDiv.style.display === 'none') {
+                explanationDiv.style.display = 'block';
+            } else {
+                explanationDiv.style.display = 'none';
+            }
+        });
+
+        // Crear los elementos de los héroes y agregarlos al comboDiv
+        combo.heroes.forEach(hero => {
+            const heroCard = createHeroCard(hero, combo.explanation, combo.lane); // Pasar la explicación del combo y la línea
+            comboDiv.appendChild(heroCard);
+        });
+        
+
+        // Agregar el comboDiv al comboDisplay
+        comboDisplay.appendChild(comboDiv);
     });
 }
 
+
+
+
+
+
+// Llamar a updateCombos para mostrar combos por defecto al cargar la página
+updateCombos();

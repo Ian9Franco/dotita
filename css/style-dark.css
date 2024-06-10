@@ -64,12 +64,26 @@ body {
 .team-generator{
 	background-color:  #202020;
 }
+
 .combo-container {
-    background-color: #202020;
+    background-color: #2020201e;
+}
+
+.selectors-container{
+	background-color: #202020;
+}
+.combo {
+    padding: 10px;
+    border: 1px solid #363636; /* Borde para diferenciar los combos */
+    border-radius: 10px;
+    background-color: #202020; /* Fondo diferente para cada combo */
+    margin-bottom: 20px; /* Espacio entre los combos */
 }
 
 .explanation {
     color: #a7a7a7;
+	background-color: rgba(0, 0, 0, 0.8); /* fondo */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-details {

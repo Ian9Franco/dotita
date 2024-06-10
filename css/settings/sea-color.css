@@ -115,3 +115,24 @@ a:focus,
         border-left: 1px solid #0dcdbd !important;
     }
 }
+.combo button {
+    /* Otros estilos... */
+    /* Centrar horizontalmente el botón */
+    margin: 0 auto 10px;
+    display: block; /* Asegurar que el botón ocupe todo el ancho disponible */
+    /* Cambiar el color de fondo */
+    background-color: #0dcdbd;
+    /* Cambiar el color del texto */
+    color: white;
+    /* Ajustar el relleno interno */
+    padding: 10px 20px;
+    /* Agregar bordes redondeados */
+    border-radius: 5px;
+    /* Cambiar el cursor al pasar sobre el botón */
+    cursor: pointer;
+}
+
+.combo button:hover {
+    /* Cambiar el color de fondo al pasar sobre el botón */
+    background-color: #098d82;
+}

@@ -1,48 +1,88 @@
-.combo-container {
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    display: flex;
-    justify-content: center;
+/* Estilos para la sección del título y selectores */
+.selectors-container, .combo-container {
+    padding: 20px; /* Aumentar el padding para hacerlos más grandes */
+    border-radius: 15px; /* Hacer los bordes más redondeados */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Añadir una sombra más pronunciada */
+    margin: 20px 0; /* Separación entre secciones */
+    transition: all 0.3s ease; /* Animación suave */
+    font-size: 18px; /* Aumentar el tamaño del texto */
+}
+
+.selectors-container {
+    text-align: center;
+}
+
+/* Estilos para el texto */
+.selectors-container h2 {
+    font-size: 24px; /* Aumentar el tamaño del título */
+
+}
+
+/* Añadir diseño de cuadrícula para el contenedor de los combos */
+.combo-display {
     align-items: center;
-    height: auto; /* Opcional: establecer la altura para centrar verticalmente en la página */
-    text-align: center; /* Para centrar el texto */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Ajusta el número de columnas automáticamente */
+    gap: 20px; /* Espacio entre los elementos */
+    
+
+    /* Consulta de medios para pantallas de escritorio */
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cambia a 250px en pantallas de escritorio */
+        gap: 50px; /* Aumenta el espacio entre los elementos en pantallas de escritorio */
+    }
 }
 
-.generador-de-combos {
-    width: 100%; /* Opcional: para ajustar el ancho del contenido */
+/* Estilos para cada combo */
+
+
+/* Estilos para el contenedor de héroes */
+.heroes-container {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrar los elementos horizontalmente */
+    gap: 20px; /* Espacio entre los héroes */
 }
 
-.hero {
-    position: relative;
-    display: inline-block;
-    margin: 10px;
+/* Estilos para las imágenes de los héroes */
+/* Ajustar el tamaño de la imagen del héroe */
+.hero .combo-hero-img {
+    max-width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+    max-height: 100%; /* Permite que la altura se ajuste automáticamente */
+    border-radius: 10px; /* Bordes redondeados */
+    margin-left: 50px;
+}
+/* Estilos para cada héroe */
+
+
+/* Ajustar el tamaño de la imagen en pantallas de escritorio */
+@media (min-width: 768px) {
+    .hero .combo-hero-img {
+        width: 200px; /* Duplica el tamaño de la imagen en pantallas de escritorio */
+    }
 }
 
-/* .combo-hero-img {
-    width: 150px;
-    height: auto;
-    cursor: pointer;
-}
- */
 
-.hero-details {
-    display: none;
+/* Ajustes para el hover en pantallas de escritorio */
+.hero .hero-details {
+    display: none; /* Ocultar los detalles por defecto en todos los dispositivos */
     position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 50%; /* Ajustar la posición vertical al centro del héroe */
+    transform: translateY(-50%); /* Centrar verticalmente los detalles */
     padding: 10px;
     border-radius: 5px;
     width: 250px;
     z-index: 10;
 }
 
+
+/* Mostrar detalles al hacer hover en el héroe */
 .hero:hover .hero-details {
-    display: block;
+    display: block; /* Mostrar detalles al hacer hover en el héroe */
 }
 
+/* Estilos para los detalles del héroe */
 .hero-details-content {
     text-align: left;
 }
@@ -53,9 +93,48 @@
 
 .hero-details ul {
     padding-left: 20px;
+    
 }
 
+/* Estilos para la caja de explanation */
+.explanation-container {
+    grid-column: 1 / -1; /* Ocupa todas las columnas disponibles */
+    margin: 0 auto 10px;
+     /* Espacio entre la caja de explanation y el combo */
+}
+
+/* Estilos para la explanation */
 .explanation {
-    margin-bottom: 20px;
     font-style: italic;
+    font-size: large;
+    padding: 20px; /* Añadir espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+    margin-bottom: 20px;
+    cursor: pointer;
+
+}
+
+
+/* Estilos para el botón "LOCO" */
+.combo button {
+    /* Otros estilos... */
+    /* Centrar horizontalmente el botón */
+    margin: 0 auto 20px;
+    display: block; /* Asegurar que el botón ocupe todo el ancho disponible */
+    /* Cambiar el color de fondo */
+   
+    /* Cambiar el color del texto */
+    color: white;
+    /* Ajustar el relleno interno */
+    padding: 10px 20px;
+    /* Agregar bordes redondeados */
+    border-radius: 5px;
+    /* Cambiar el cursor al pasar sobre el botón */
+    cursor: pointer;
+}
+
+.combo button:hover {
+    /* Cambiar el color de fondo al pasar sobre el botón */
+   
 }

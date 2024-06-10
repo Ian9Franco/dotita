@@ -1012,7 +1012,7 @@
             { nombre: "Black Hole", tipo: "control en área, canalizado" }
         ]
     },
-    {
+    /* {
         name: "Invoker",
         habilidades: [
             { nombre: "Quas", tipo: "regeneración, control" },
@@ -1020,7 +1020,7 @@
             { nombre: "Exort", tipo: "daño" },
             { nombre: "Invoke", tipo: "habilidad combinatoria" }
         ]
-    },
+    }, */
     {
         name: "Io",
         habilidades: [

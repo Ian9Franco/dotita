@@ -119,12 +119,12 @@
 						  </svg>
 						</a>
 					  </li>
-					<li data-tooltip="Stats" data-position="top" class="icon-a">
+					<!-- <li data-tooltip="Stats" data-position="top" class="icon-a">
 						<a href="#">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 								<path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z"/></svg>
 						</a>
-					</li>
+					</li> -->
 					<li data-tooltip="Heroes" data-position="top" class="icon-a">
 						<a href="#heroes">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -157,17 +157,13 @@
 					<div class="banner">
   						<h1>Dotita</h1>
 						<p class="cd-headline rotate-1">
-							<span>Es una</span>
+							<span>Es</span>
 							<span class="cd-words-wrapper">
-								<b class="is-visible">Garcha</b>
-								<b>Mierda</b>
-								<b>Poronga</b>
+								<b class="is-visible">falopa</b>
+								<b>Gay</b>
+								<b>De peruano</b>
 								<b>Conchasumadre</b>
 							</span>
-							<script>
-								// Aquí puedes usar los resultados de la función
-								console.log(tiposDeHabilidadesContados);
-							</script>
 						</p>
 					</div>
 					
@@ -219,26 +215,34 @@
 								<div class="header-box mb-50">
 									<h3>Generador de combos</h3>
 								</div>
+								
+								<!-- Sección del título y selectores -->
+								<div class="selectors-container">
+									<h1>Combos</h1>
+									<label for="combo-size">Selecciona el tamaño del combo:</label>
+									<select id="combo-size">
+										<option value="2">2 Héroes</option>
+										<option value="3">3 Héroes</option>
+									</select>
+									<label for="combo-type">Selecciona el tipo de combo:</label>
+									<select id="combo-type">
+										<option value="team_fight">Team Fight</option>
+										<option value="aura">Aura</option>
+										<option value="pick_up">Pick up</option>
+									</select>
+								</div>
+								
+								<!-- Caja de visualización de héroes -->
 								<div class="combo-container">
-									<div class="row mt-100 ">
+									<div class="row mt-100">
 										<div class="col-lg-12 col-sm-12">
 											<div class="generador-de-combos">
-												<h1>Combos</h1>
-												<label for="combo-size">Selecciona el tamaño del combo:</label>
-												<select id="combo-size">
-													<option value="2">2 Héroes</option>
-													<option value="3">3 Héroes</option>
-												</select>
-												<button id="generate-combo">Generar Combo</button>
 												<div class="combo-display"></div>
 											</div>
 										</div>
 									</div>
 								</div>
-								
-									
 							</div>
-						
 						</div>
 					
 						<!-- Service Row Start -->

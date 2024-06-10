@@ -1373,19 +1373,21 @@
             ulti: { nombre: "Black Hole", tipo: "Control/Daño mágico" }
         }
     },
+    
     {
         name: "Invoker",
         img: "img/heroes/invoker.png",
-        rol: "Mid, Iniciador",
+        rol: "Mid",
         complejidad: 3,
         atributo: "universal",
         habilidades: {
-            primera: { nombre: "Quas", tipo: "Habilidad pasiva" },
-            segunda: { nombre: "Wex", tipo: "Habilidad pasiva" },
-            tercera: { nombre: "Exort", tipo: "Habilidad pasiva" },
-            ulti: { nombre: "Invoke", tipo: "Habilidad activa" }
+            primera: { nombre: "Quas", tipo: "Si" },
+            segunda: { nombre: "Wex", tipo: "No" },
+            pasiva: { nombre: "Exort", tipo: "No se" },
+            ulti: { nombre: "Invoke", tipo: "Quien?" }
         }
     },
+
     {
         name: "Io",
         img: "img/heroes/wisp.png",
@@ -1399,6 +1401,7 @@
             ulti: { nombre: "Relocate", tipo: "Movilidad" }
         }
     },
+
     {
         name: "Lone Druid",
         img: "img/heroes/lone_druid.png",

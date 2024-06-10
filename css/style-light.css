@@ -64,11 +64,24 @@ body {
 .team-generator {
 	background-color: #d3d3d3;
 }
-.combo-container {
-    background-color: #d3d3d3;
+.combo-container{
+	background-color: #d3d3d321;
 }
+.selectors-container{
+	background-color: #d3d3d3;
+}
+.combo {
+    padding: 10px;
+    border: 1px solid #363636; /* Borde para diferenciar los combos */
+    border-radius: 10px;
+    background-color: #d3d3d3; /* Fondo diferente para cada combo */
+    margin-bottom: 20px; /* Espacio entre los combos */
+}
+
 .explanation {
-    color: #555;
+	color: rgb(0, 0, 0); /* habilidades */
+	background-color: rgba(88, 88, 88, 0.8); /* fondo */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-details {
