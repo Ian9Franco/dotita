@@ -1,0 +1,61 @@
+.combo-container {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Opcional: establecer la altura para centrar verticalmente en la página */
+    text-align: center; /* Para centrar el texto */
+}
+
+.generador-de-combos {
+    width: 100%; /* Opcional: para ajustar el ancho del contenido */
+}
+
+.hero {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+/* .combo-hero-img {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+}
+ */
+
+.hero-details {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    border-radius: 5px;
+    width: 250px;
+    z-index: 10;
+}
+
+.hero:hover .hero-details {
+    display: block;
+}
+
+.hero-details-content {
+    text-align: left;
+}
+
+.hero-details h2 {
+    margin-top: 0;
+}
+
+.hero-details ul {
+    padding-left: 20px;
+}
+
+.explanation {
+    margin-bottom: 20px;
+    font-style: italic;
+}

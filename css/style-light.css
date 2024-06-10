@@ -64,6 +64,18 @@ body {
 .team-generator {
 	background-color: #d3d3d3;
 }
+.combo-container {
+    background-color: #d3d3d3;
+}
+.explanation {
+    color: #555;
+}
+
+.hero-details {
+    background-color: rgba(88, 88, 88, 0.8); /* fondo */
+    color: rgb(0, 0, 0); /* habilidades */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
 .hero p {
     margin-top: 10px;

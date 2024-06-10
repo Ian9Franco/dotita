@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="css/style-demo.css">
 		<link rel="stylesheet" href="css/generador-team.css">
 		<link rel="stylesheet" href="css/heroeslist.css">
+		<link rel="stylesheet" href="css/combo.css">
 		
 		<!-- Settings Style -->
 		<link rel="stylesheet" class="posit-nav" href="css/settings/left-nav.css" />
@@ -163,6 +164,10 @@
 								<b>Poronga</b>
 								<b>Conchasumadre</b>
 							</span>
+							<script>
+								// Aquí puedes usar los resultados de la función
+								console.log(tiposDeHabilidadesContados);
+							</script>
 						</p>
 					</div>
 					
@@ -191,7 +196,7 @@
 					<section class="container">
 						<!-- Section Title -->
 						<div class="header-page mt-70 mob-mt">
-							<h2>Generadores</h2>
+							<h2>Generador de equipo</h2>
 							<span></span>
 						</div>
 					
@@ -210,43 +215,30 @@
 						<!-- Interests Row Start -->
 						<div class="row mt-100">
 							<!-- Header Block -->
-							<div class="col-md-12">
+							<div class="col-lg-12 col-sm-12">
 								<div class="header-box mb-50">
-									<h3>Combos</h3>
+									<h3>Generador de combos</h3>
 								</div>
-
-								<div class="row mt-100">
-									<div class="col-lg-12 col-sm-12 combo-filter">
-										<ul id="role-filter">
-											<li class="active" data-filter="*">filtro</li>
-											<li data-filter="fuerza">filtro</li>
-											<li data-filter="agilidad">filtro</li>
-											<li data-filter="inteligencia">filtro</li>
-											<li data-filter="universal">filtro</li>
-										</ul>
+								<div class="combo-container">
+									<div class="row mt-100 ">
+										<div class="col-lg-12 col-sm-12">
+											<div class="generador-de-combos">
+												<h1>Combos</h1>
+												<label for="combo-size">Selecciona el tamaño del combo:</label>
+												<select id="combo-size">
+													<option value="2">2 Héroes</option>
+													<option value="3">3 Héroes</option>
+												</select>
+												<button id="generate-combo">Generar Combo</button>
+												<div class="combo-display"></div>
+											</div>
+										</div>
 									</div>
 								</div>
-
-								<div class="row mt-100">
-									<div class="col-lg-12 col-sm-12 combo-filter">
-										<ul id="role-filter">
-											<li class="active" data-filter="*">filtro</li>
-											<li data-filter="fuerza">filtro</li>
-											<li data-filter="agilidad">filtro</li>
-											<li data-filter="inteligencia">filtro</li>
-											<li data-filter="universal">filtro</li>
-										</ul>
-									</div>
-								</div>
-
-
+								
+									
 							</div>
-							<div class="animated_card">
-								<span class="animacion">combo display</span>
-							</div>
-							<div class="animated_card2">
-								<span class="animacion">combo display</span>
-							</div>
+						
 						</div>
 					
 						<!-- Service Row Start -->
@@ -516,9 +508,12 @@
 		</div>
 		
 		<!-- All Script -->
+		<script src="js/heroesarray.js"></script>
+		
+		<script src="js/generador-de-combos.js"></script>
+	
 		<script src="js/heroeslist.js"></script>
 		<script src="js/generador-team.js"></script>
-		<script src="js/heroesarray.js"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/isotope.pkgd.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
