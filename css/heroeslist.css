@@ -23,3 +23,48 @@ figcaption h3 {
 .puto-detector p{
     color: yellow;
 }
+
+/* Añadir la transición para los héroes */
+/* #heroes-container .item {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.item.fade-out {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.item.fade-in {
+    opacity: 1;
+    transform: scale(1);
+} */
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.fade-in {
+    animation: slide-in 1s ease-in-out forwards;
+}
+
+.fade-out {
+    animation: slide-out 5s ease-in-out forwards;
+}

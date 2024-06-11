@@ -64,6 +64,29 @@ body {
 .team-generator{
 	background-color:  #202020;
 }
+.team-generator button{
+	background-color: #cecece;
+	color: #000;
+}
+
+option{
+	background-color: rgb(43, 43, 43);
+	color: rgb(177, 177, 177);
+	border-radius: 15px; /* Hacer los bordes más redondeados */
+    box-shadow: 15px 15px 15px rgb(255, 255, 255); /* Añadir una sombra más pronunciada */
+}
+#combo-size{
+	background-color: rgb(43, 43, 43);
+	color: rgb(177, 177, 177);
+	border-radius: 15px; /* Hacer los bordes más redondeados */
+  
+}
+#combo-type{
+	background-color: rgb(43, 43, 43);
+	color: rgb(177, 177, 177);
+	border-radius: 15px; /* Hacer los bordes más redondeados */
+    
+}
 
 .combo-container {
     background-color: #2020201e;

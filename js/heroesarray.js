@@ -1429,6 +1429,20 @@
         }
     },
     {
+        "name": "Marci",
+        "img": "img/heroes/marci.png",
+        "rol": "Support",
+        "complejidad": 2,
+        "atributo": "universal",
+        "tipo": "stun",
+        "habilidades": {
+            "primera": { "nombre": "Dispose", "tipo": "Stun" },
+            "segunda": { "nombre": "Rebound", "tipo": "Jump/Buff" },
+            "pasiva": { "nombre": "Sidekick", "tipo": "Buff" },
+            "ulti": { "nombre": "Unleash", "tipo": "Buff/Attack Speed" }
+        }
+    },
+    {
         name: "Mars",
         img: "img/heroes/mars.png",
         rol: "Iniciador, Tanque",

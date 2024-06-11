@@ -10,6 +10,13 @@
 
 .selectors-container {
     text-align: center;
+    /* color: #fff; */
+}
+.selectors-container:hover{
+    transform: scale(1.02);
+    transition: transform 0.5s, opacity 0.3s, box-shadow 0.3s;
+    transition: transform 1.5s;
+
 }
 
 /* Estilos para el texto */
@@ -32,6 +39,12 @@
         gap: 50px; /* Aumenta el espacio entre los elementos en pantallas de escritorio */
     }
 }
+.combo-container:hover{
+        transform: scale(1.02);
+        transition: transform 0.5s, opacity 0.3s, box-shadow 0.3s;
+        transition: transform 1.5s;
+
+}
 
 /* Estilos para cada combo */
 
@@ -45,21 +58,44 @@
     gap: 20px; /* Espacio entre los héroes */
 }
 
+
+
 /* Estilos para las imágenes de los héroes */
 /* Ajustar el tamaño de la imagen del héroe */
 .hero .combo-hero-img {
     max-width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
     max-height: 100%; /* Permite que la altura se ajuste automáticamente */
     border-radius: 10px; /* Bordes redondeados */
-    margin-left: 50px;
+    transition: transform 1.5s, filter 1.5s, box-shadow 1.5s;
+    
 }
-/* Estilos para cada héroe */
+
+
+        /* Estilos para los hover */
+
+
+.combo-display .hero img:hover {
+           color: #fff;
+           transform: scale(0.9);
+           transition: transform 0.5s, opacity 0.3s, box-shadow 0.3s;
+           
+           transition: transform 1.5s;
+           filter: blur(1px);
+}
+
+
+
+
+
+
 
 
 /* Ajustar el tamaño de la imagen en pantallas de escritorio */
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     .hero .combo-hero-img {
-        width: 200px; /* Duplica el tamaño de la imagen en pantallas de escritorio */
+        
+        width: 350px;
+        margin-left: 0; /* Duplica el tamaño de la imagen en pantallas de escritorio */
     }
 }
 
@@ -68,24 +104,39 @@
 .hero .hero-details {
     display: none; /* Ocultar los detalles por defecto en todos los dispositivos */
     position: absolute;
-    top: 50%; /* Ajustar la posición vertical al centro del héroe */
-    transform: translateY(-50%); /* Centrar verticalmente los detalles */
+     /* Ajustar la posición vertical */
+    transform: translateY(10%); /* Centrar verticalmente los detalles */
     padding: 10px;
     border-radius: 5px;
     width: 250px;
-    z-index: 10;
+    z-index: 5;
+    /* Altura máxima del contenedor */
+   
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* Sombra para un mejor contraste */
 }
-
 
 /* Mostrar detalles al hacer hover en el héroe */
 .hero:hover .hero-details {
     display: block; /* Mostrar detalles al hacer hover en el héroe */
+    transition: transform 1.5s, filter 1.5s, box-shadow 1.5s;
 }
 
 /* Estilos para los detalles del héroe */
 .hero-details-content {
     text-align: left;
+    font-size: 14px; /* Tamaño de fuente más pequeño para ocupar menos espacio */
 }
+
+/* Ajustes adicionales para pantallas móviles */
+@media (max-width: 600px) {
+    .hero .hero-details {
+        overflow-y: auto; /* Habilitar scroll interno */
+        display: none;
+        width: 200px; /* Ancho reducido para móviles */
+        max-height: 200px; /* Altura reducida para móviles */
+    }
+}
+
 
 .hero-details h2 {
     margin-top: 0;
@@ -106,14 +157,15 @@
 /* Estilos para la explanation */
 .explanation {
     font-style: italic;
-    font-size: large;
-    padding: 20px; /* Añadir espacio interno */
+    font-size:medium;
+    padding: 10px; /* Añadir espacio interno */
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
     margin-bottom: 20px;
     cursor: pointer;
 
 }
+
 
 
 /* Estilos para el botón "LOCO" */
@@ -134,7 +186,81 @@
     cursor: pointer;
 }
 
-.combo button:hover {
-    /* Cambiar el color de fondo al pasar sobre el botón */
+/* .combo button:hover {
+    
    
+} */
+/* 
+.combo-display .hero img{
+    background: black;
+    cursor: pointer;
+    border: none;
+    
 }
+
+.combo-display .hero img::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        red, blue, deeppink, blue, red, blue, deeppink, blue
+    );
+    background-size: 800%;
+    border-radius: 10px;
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0,0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+} */
+
+
+/* 
+.combo-display span:nth-child(1) {
+    width: 100%;
+    height: 1px;
+    top: 0;
+    left: -100%;
+}
+
+.combo-display span:nth-child(2) {
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    right: -100%;
+}
+
+.combo-display span:nth-child(3) {
+    width: 1px;
+    height: 100%;
+    bottom: -100%;
+    left: 0;
+}
+
+.combo-display span:nth-child(4) {
+    width: 1px;
+    height: 100%;
+    top: -100%;
+    right: 0;
+}
+
+.combo-display .hero img:hover span:nth-child(1) {
+    left: 0;
+} */
+

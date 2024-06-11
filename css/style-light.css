@@ -61,9 +61,36 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+option{
+	background-color: rgb(43, 43, 43);
+	color: rgb(177, 177, 177);
+	border-radius: 15px; /* Hacer los bordes más redondeados */
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.2); /* Añadir una sombra más pronunciada */
+	border-style: none;
+}
+#combo-size{
+	background-color: rgb(177, 177, 177);
+	color: rgb(43, 43, 43);
+	border-radius: 15px; /* Hacer los bordes más redondeados */
+   
+}
+#combo-type{
+	background-color: rgb(177, 177, 177);
+	color: rgb(43, 43, 43);
+	border-radius: 15px; /* Hacer los bordes más redondeados */
+   
+}
+
 .team-generator {
 	background-color: #d3d3d3;
 }
+
+.team-generator button{
+	background-color: #313131;
+	color: #fff;
+}
+
+
 .combo-container{
 	background-color: #d3d3d321;
 }

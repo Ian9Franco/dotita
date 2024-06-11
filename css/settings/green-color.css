@@ -138,3 +138,13 @@ a:focus,
     /* Cambiar el color de fondo al pasar sobre el botón */
     background-color: #178051;
 }
+
+.combo-display .hero img:hover {
+    border: 2px solid #25ca7f;
+
+}
+
+#teamDisplay .hero img:hover {
+    border: 2px solid #25ca7f;
+
+}

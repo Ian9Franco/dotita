@@ -1,21 +1,40 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Limpiar los valores de los select al cargar la página
+    document.getElementById('combo-size').selectedIndex = -1;
+    document.getElementById('combo-type').selectedIndex = -1;
+});
+
 document.getElementById('combo-size').addEventListener('change', updateCombos);
 document.getElementById('combo-type').addEventListener('change', updateCombos);
 
 function updateCombos() {
-    const comboSize = parseInt(document.getElementById('combo-size').value);
+    const comboSize = document.getElementById('combo-size').value;
     const comboType = document.getElementById('combo-type').value;
-    const combos = generateCombos(comboSize, comboType);
+
+    // Verifica si se ha seleccionado algún parámetro
+    if (!comboSize || !comboType) {
+        clearCombos();
+        return;
+    }
+
+    const combos = generateCombos(parseInt(comboSize), comboType);
     displayCombos(combos);
 }
+
+function clearCombos() {
+    const comboDisplay = document.querySelector('.combo-display');
+    comboDisplay.innerHTML = '';
+}
+
 function generateCombos(size, type) {
     const combos = {
         team_fight: {
             2: [
                 ["Crystal Maiden", "Juggernaut", "Un combo clásico: Crystal Maiden asegura la sostenibilidad con su aura de maná, y Juggernaut ofrece tanto defensa como ofensiva con Blade Fury y Healing Ward. Nova y Freeze junto a Blade Fury son mortales.", "Safelane"],
                 ["Terrorblade", "Dazzle", "Cuando TB tiene poca vida, Dazzle lo salva con Grave, dándole tiempo para hacer Sunder. Buen balance entre un carry duro y un support duro.", "Safelane"],
-                /* ["Tiny", "IO", "IO enlaza a Tiny para aumentar su velocidad de movimiento, velocidad de ataque y regeneración. Usan teleport para kills instantáneos.", "Safelane o Offlane"],
-                ["Void", "Ancient Apparition", "Cuando Void usa su ulti, Ancient Apparition añade su ultimate. Con buena comunicación, pueden hacer wipes de equipo con solo dos jugadores.", "Safelane o Split"],
-                 */["Viper", "Venomancer", "Máximo daño por veneno y ralentización. Los enemigos tendrán dificultades para moverse. Ambos atacan y usan hechizos para hacer que el enemigo casi no pueda moverse.", "Safelane o Offlane"],
+                ["Tiny", "Io", "Io enlaza a Tiny para aumentar su velocidad de movimiento, velocidad de ataque y regeneración. Usan teleport para kills instantáneos.", "Safelane o Offlane"],
+                ["Void Spirit", "Ancient Apparition", "Cuando Void usa su ulti, Ancient Apparition añade su ultimate. Con buena comunicación, pueden hacer wipes de equipo con solo dos jugadores.", "Safelane o Split"],
+                ["Viper", "Venomancer", "Máximo daño por veneno y ralentización. Los enemigos tendrán dificultades para moverse. Ambos atacan y usan hechizos para hacer que el enemigo casi no pueda moverse.", "Safelane o Offlane"],
                 ["Axe", "Skywrath Mage", "Axe usa Berserker's Call para agrupar a los enemigos, permitiendo a Skywrath Mage infligir un gran daño con Mystic Flare.", "Offlane"],
                 ["Faceless Void", "Witch Doctor", "Faceless Void atrapa a los enemigos en su Chronosphere, mientras Witch Doctor coloca su Death Ward para causar daño continuo.", "Safelane"],
             ],
@@ -38,9 +57,8 @@ function generateCombos(size, type) {
         },
         pick_up: {
             2: [
-                /* ["Marci", "Crystal Maiden", "Marci y Crystal Maiden logran kills tempranos fácilmente, aprovechando el control de Marci y el daño mágico de Crystal Maiden.", "Offlane"],
                 ["Shadow Shaman", "Juggernaut", "Shadow Shaman atrapa al enemigo con Shackle, permitiendo a Juggernaut infligir un gran daño con Blade Fury.", "Safelane"],
-                 */["Shadow Shaman", "Ursa", "Shadow Shaman atrapa al enemigo con Shackle, permitiendo que Ursa acumule daño rápidamente.", "Safelane"],
+                ["Shadow Shaman", "Ursa", "Shadow Shaman atrapa al enemigo con Shackle, permitiendo que Ursa acumule daño rápidamente.", "Safelane"],
                 ["Shadow Shaman", "Lifestealer", "Shadow Shaman atrapa al enemigo con Shackle, permitiendo que Lifestealer lo golpee. Luego, Lifestealer ralentiza al enemigo con Open Wounds.", "Safelane"],
                 ["Witch Doctor", "Juggernaut", "Witch Doctor aturde al enemigo y aplica Maledict, incrementando el daño cuando Juggernaut usa Blade Fury.", "Safelane"],
                 ["Mirana", "Bane", "Bane duerme al enemigo y Mirana le pega con una flecha de larga distancia para kills fáciles. Mirana puede semi-carry para tener impacto suficiente.", "Offlane"],
@@ -49,6 +67,7 @@ function generateCombos(size, type) {
                 ["Pudge", "Techies", "Techies planta minas secretamente y Pudge atrae al enemigo para kills instantáneos.", "Cualquier línea o roaming"],
                 ["Bounty Hunter", "Queen of Pain", "Bounty Hunter rastrea a los enemigos, facilitando a Queen of Pain cazarlos con su alto daño.", "Safelane"],
                 ["Nyx Assassin", "Invoker", "Nyx Assassin inicia el combo con su aturdimiento, permitiendo a Invoker realizar una combinación devastadora de habilidades.", "Safelane"],
+                ["Marci", "Crystal Maiden", "Marci y Crystal Maiden logran kills tempranos fácilmente, aprovechando el control de Marci y el daño mágico de Crystal Maiden.", "Offlane"],
             ],
             3: [
                 ["Mirana", "Shadow Demon", "Leshrac", "Shadow Demon inicia con Disruption, Mirana sigue con Sacred Arrow y Leshrac asegura el kill con su daño de área.", "Safelane"],
@@ -56,6 +75,7 @@ function generateCombos(size, type) {
             ],
         }
     };
+
 
     // Verifica que 'type' y 'size' existan en 'combos'
     if (!combos[type] || !combos[type][size]) {
@@ -85,14 +105,10 @@ function createHeroCard(hero, comboExplanation, comboLane) {
     lineContainer.classList.add('line-container');
     lineContainer.innerHTML = `<p><strong>Línea:</strong> ${comboLane}</p>`;
 
-
-    // Agregar el contenedor de la línea antes de la imagen del héroe
-    heroDiv.appendChild(lineContainer);
-
     // Agregar la imagen del héroe al contenedor
-    heroDiv.innerHTML += `
+    heroDiv.innerHTML = `
         <img src="${hero.img}" alt="${hero.name}" class="combo-hero-img">
-        <p><strong>Rol:</strong> ${hero.rol}</p> <!-- Aquí se muestra el rol -->
+        <p><strong>Rol:</strong> ${hero.rol}</p>
     `;
 
     // Crear el contenedor de los detalles de sinergia
@@ -131,17 +147,24 @@ function createHeroCard(hero, comboExplanation, comboLane) {
     return heroDiv;
 }
 
-
-
-
 function displayCombos(combos) {
     const comboDisplay = document.querySelector('.combo-display');
-    comboDisplay.innerHTML = ''; // Limpiar contenido previo
+    comboDisplay.innerHTML = ''; // Limpiar el contenido anterior
+
+    if (combos.length === 0) {
+        return; // No mostrar nada si no hay combos
+    }
 
     combos.forEach(combo => {
         // Crear un div para cada combo
         const comboDiv = document.createElement('div');
-        comboDiv.classList.add('combo'); // Agregar clase para estilo de combo
+        comboDiv.classList.add('combo');
+
+        // Crear el contenedor para la información de la línea (en la parte superior del combo)
+        const lineContainer = document.createElement('div');
+        lineContainer.classList.add('line-container');
+        lineContainer.innerHTML = `<p><strong>Línea:</strong> ${combo.line}</p>`;
+        comboDiv.appendChild(lineContainer);
 
         // Crear el botón para explicar el combo
         const explainButton = document.createElement('button');
@@ -167,20 +190,13 @@ function displayCombos(combos) {
 
         // Crear los elementos de los héroes y agregarlos al comboDiv
         combo.heroes.forEach(hero => {
-            const heroCard = createHeroCard(hero, combo.explanation, combo.lane); // Pasar la explicación del combo y la línea
+            const heroCard = createHeroCard(hero, combo.explanation, combo.line);
             comboDiv.appendChild(heroCard);
         });
-        
 
         // Agregar el comboDiv al comboDisplay
         comboDisplay.appendChild(comboDiv);
     });
 }
 
-
-
-
-
-
-// Llamar a updateCombos para mostrar combos por defecto al cargar la página
-updateCombos();
+// No llamar a updateCombos al cargar la página para no mostrar combos por defecto

@@ -7,8 +7,14 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
+}
+.team-generator:hover{
+    
+    transform: scale(1.02);
+    transition: transform 0.5s, opacity 0.3s, box-shadow 0.3s;
+    transition: transform 1.5s;
 }
 
 button {
@@ -20,7 +26,8 @@ button {
     border: none;
     border-radius: 4px;
     margin-top: 20px;
-    transition: background-color 0.3s, color 0.3s;
+    /* transition: background-color 0.3s, color 0.3s; */
+    
 }
 
 
@@ -30,7 +37,7 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #8a8a8a;  //* Color de fondo inicial 
+    /* background-color: #8a8a8a;   *///* Color de fondo inicial 
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -58,24 +65,49 @@ button {
     margin: 10px;
     text-align: center;
     position: relative;
-    gap: 5vw;
+    gap: 2vw;
+
 }
 
 .team-display img {
-    width: 100px;
-    height: 100px;
+    width: 130px; /* Ancho mayor para un rectángulo horizontal */
+    height: 230px; /* Altura menor para un rectángulo horizontal */
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 10px; /* Borde más suave para un rectángulo */
     cursor: pointer;
+    transition: transform 1.5s, filter 1.5s, box-shadow 1.5s; /* Transiciones para transformación, filtro y sombra */
 }
 
-.hero img:hover {
-    transform: scale(1.1);
+#teamDisplay .hero img:hover {
+    transform: scale(0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* transition: transform 1.5s; */
+    filter: blur(0.8px);
 }
+
+@media (max-width: 600px) {
+    .team-display img {
+        width: 80px;
+        height: 130px;
+        
+    }
+    .team-display{
+        font-size: smaller;
+    }
+}
+
+/* Media query para pantallas muy pequeñas (por ejemplo, teléfonos móviles pequeños) */
+@media (max-width: 400px) {
+    .team-display img {
+        width: 60px;
+        height: 120px;
+    }
+}
+
 
 .hero .complexity {
     display: none;
-    position: absolute;
+   /*  position: absolute; */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -89,11 +121,15 @@ button {
 .hero img:hover + .complexity {
     display: block;
 }
+
+
+
+
 /* animacion nueva */
 
  /* 1nd borde animacion */ 
 
-
+/* 
 .animated_card,
 .animated_card2 {
     display: grid;
@@ -134,7 +170,7 @@ button {
     50% {
         filter: hue-rotate(340deg);
     }
-}
+} */
 
 /* .animated_card2 {
     overflow: hidden;
