@@ -31,7 +31,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Ajusta el número de columnas automáticamente */
     gap: 20px; /* Espacio entre los elementos */
-    
+    transition: all 0.9s ease;
 
     /* Consulta de medios para pantallas de escritorio */
     @media (min-width: 768px) {
@@ -39,12 +39,12 @@
         gap: 50px; /* Aumenta el espacio entre los elementos en pantallas de escritorio */
     }
 }
-.combo-container:hover{
-        transform: scale(1.02);
+/* .combo-container:hover{
+        transform: scale(0.9);
         transition: transform 0.5s, opacity 0.3s, box-shadow 0.3s;
         transition: transform 1.5s;
 
-}
+} */
 
 /* Estilos para cada combo */
 
@@ -58,6 +58,13 @@
     gap: 20px; /* Espacio entre los héroes */
 }
 
+.combo-display:hover{
+    transform: scale(1.02);
+    transition: transform 0.5s, opacity 0.3s, box-shadow 0.3s;
+    
+
+}
+
 
 
 /* Estilos para las imágenes de los héroes */
@@ -67,6 +74,7 @@
     max-height: 100%; /* Permite que la altura se ajuste automáticamente */
     border-radius: 10px; /* Bordes redondeados */
     transition: transform 1.5s, filter 1.5s, box-shadow 1.5s;
+    border: 2px solid #ffffff33;
     
 }
 
@@ -184,12 +192,18 @@
     border-radius: 5px;
     /* Cambiar el cursor al pasar sobre el botón */
     cursor: pointer;
+    border: 2px solid #ffffff33;
+    transition: all 1.3s ease; /* Animación suave */
 }
 
-/* .combo button:hover {
-    
+.combo button:hover {
+    transform: scale(0.9);
+           transition: transform 0.5s, opacity 0.3s, box-shadow 0.3s;
+           
+           transition: transform 2.5s;
+          
    
-} */
+}
 /* 
 .combo-display .hero img{
     background: black;

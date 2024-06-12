@@ -2,9 +2,9 @@
 				CSS Styles Dark
 --------------------------------------------------
 
-    Template Name: Baha - Personal Portfolio Template
-    Author: 
-    Copyright: 2019
+    Template Name: Dotita
+    Author: Ian Franco Collada Pontorno
+    Copyright: 2024
 
 --------------------------------------------------
 
@@ -82,6 +82,12 @@ option{
   
 }
 #combo-type{
+	background-color: rgb(43, 43, 43);
+	color: rgb(177, 177, 177);
+	border-radius: 15px; /* Hacer los bordes más redondeados */
+    
+}
+#combo-line{
 	background-color: rgb(43, 43, 43);
 	color: rgb(177, 177, 177);
 	border-radius: 15px; /* Hacer los bordes más redondeados */

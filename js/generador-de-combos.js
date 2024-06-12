@@ -2,22 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Limpiar los valores de los select al cargar la página
     document.getElementById('combo-size').selectedIndex = -1;
     document.getElementById('combo-type').selectedIndex = -1;
+    document.getElementById('combo-line').selectedIndex = -1;
 });
 
 document.getElementById('combo-size').addEventListener('change', updateCombos);
 document.getElementById('combo-type').addEventListener('change', updateCombos);
+document.getElementById('combo-line').addEventListener('change', updateCombos);
 
 function updateCombos() {
     const comboSize = document.getElementById('combo-size').value;
     const comboType = document.getElementById('combo-type').value;
+    const comboLine = document.getElementById('combo-line').value;
 
     // Verifica si se ha seleccionado algún parámetro
-    if (!comboSize || !comboType) {
+    if (!comboSize || !comboType || !comboLine) {
         clearCombos();
         return;
     }
 
-    const combos = generateCombos(parseInt(comboSize), comboType);
+    const combos = generateCombos(parseInt(comboSize), comboType, comboLine);
     displayCombos(combos);
 }
 
@@ -26,7 +29,7 @@ function clearCombos() {
     comboDisplay.innerHTML = '';
 }
 
-function generateCombos(size, type) {
+function generateCombos(size, type, line) {
     const combos = {
         team_fight: {
             2: [
@@ -76,7 +79,6 @@ function generateCombos(size, type) {
         }
     };
 
-
     // Verifica que 'type' y 'size' existan en 'combos'
     if (!combos[type] || !combos[type][size]) {
         console.error('Tipo o tamaño de combo no válido');
@@ -92,7 +94,7 @@ function generateCombos(size, type) {
         const comboExplanation = combo[size]; // La explicación es el penúltimo elemento
         const comboLine = combo[size + 1]; // La línea es el último elemento
         return { heroes: comboHeroes, explanation: comboExplanation, line: comboLine };
-    }).filter(combo => combo !== null);
+    }).filter(combo => combo !== null && combo.line.includes(line));
 }
 
 function createHeroCard(hero, comboExplanation, comboLane) {
