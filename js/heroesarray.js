@@ -794,7 +794,7 @@
     {
         name: "Viper",
         img: "img/heroes/viper.png",
-        rol: "Mid",
+        rol: "Mid, Offlane",
         complejidad: 1,
         atributo: "agilidad",
         habilidades: {

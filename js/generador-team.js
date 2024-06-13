@@ -1,4 +1,17 @@
-document.getElementById('generateTeamButton').addEventListener('click', () => {
+let generationInProgress = false; // Variable para controlar si ya hay una generación en curso
+
+document.getElementById('generateTeamButton').addEventListener('click', async () => {
+    if (generationInProgress) {
+        return; // Si ya hay una generación en curso, no hacer nada
+    }
+
+    generationInProgress = true; // Marcar que hay una generación en curso
+
+    const teamDisplay = document.getElementById('teamDisplay');
+    const heroesToRemove = Array.from(teamDisplay.querySelectorAll('.hero'));
+
+    await removeHeroes(heroesToRemove);
+
     const selectedHeroes = new Set();
 
     const roles = [
@@ -9,48 +22,78 @@ document.getElementById('generateTeamButton').addEventListener('click', () => {
         { name: "Carry", criteria: ["Carry"] },
     ];
 
-    const team = roles.map(role => getRandomUniqueHeroByCriteria(role.criteria, selectedHeroes, role.name, role.exclusive));
-
-    displayTeam(team);
-});
-
-function getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, exclusive = false) {
-    const allHeroes = Object.values(heroes).flat();
-    const availableHeroes = allHeroes.filter(hero => {
-        const heroRoles = hero.rol.split(', ');
-        return criteria.some(role => heroRoles.includes(role)) && !selectedHeroes.has(hero.name) && (!exclusive || heroRoles.length === 1);
-    });
-
-    if (availableHeroes.length === 0) {
-        throw new Error(`No hay suficientes héroes para cumplir con el rol requerido: ${roleName}.`);
+    for (let i = 0; i < 5; i++) {
+        const roleName = roles[i % roles.length].name;
+        const criteria = getCriteriaForRole(roleName);
+        
+        const hero = await getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, roleName === 'Apoyo Primario');
+        selectedHeroes.add(hero.name);
+        
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
+        
+        displayHero(hero);
     }
 
-    const hero = availableHeroes[Math.floor(Math.random() * availableHeroes.length)];
-    selectedHeroes.add(hero.name);
+    generationInProgress = false; // Marcar que la generación ha terminado
+});
 
-    const selectedRole = criteria.find(role => hero.rol.split(', ').includes(role));
+async function removeHeroes(heroesToRemove) {
+    const fadeOutDuration = 500; // Duración del fade-out en milisegundos
 
-    return { ...hero, selectedRole: roleName };
+    for (let heroElement of heroesToRemove) {
+        heroElement.querySelector('img').classList.add('fade-out');
+
+        await new Promise(resolve => {
+            setTimeout(() => {
+                heroElement.remove();
+                resolve();
+            }, fadeOutDuration); // Esperar el tiempo de fade-out antes de eliminar el héroe
+        });
+    }
 }
 
-function displayTeam(team) {
-    const teamDisplay = document.getElementById('teamDisplay');
-    teamDisplay.innerHTML = "";
-    team.forEach((hero, index) => {
-        const heroElement = document.createElement('div');
-        heroElement.classList.add('hero');
-        heroElement.innerHTML = `
-            <img src="${hero.img}" alt="${hero.name}" class="fade-in">
-            <div class="complexity">Complejidad: ${hero.complejidad}</div>
-            <p>${hero.name}</p>
-            <p class="role">${hero.selectedRole}</p>
-        `;
-        heroElement.addEventListener('dblclick', () => changeHero(hero, index));
-        teamDisplay.appendChild(heroElement);
+function getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, exclusive = false) {
+    return new Promise(resolve => {
+        const allHeroes = Object.values(heroes).flat();
+        const availableHeroes = allHeroes.filter(hero => {
+            const heroRoles = hero.rol.split(', ');
+            return criteria.some(role => heroRoles.includes(role)) && !selectedHeroes.has(hero.name) && (!exclusive || heroRoles.length === 1);
+        });
+
+        if (availableHeroes.length === 0) {
+            throw new Error(`No hay suficientes héroes para cumplir con el rol requerido: ${roleName}.`);
+        }
+
+        const hero = availableHeroes[Math.floor(Math.random() * availableHeroes.length)];
+        selectedHeroes.add(hero.name);
+
+        const selectedRole = criteria.find(role => hero.rol.split(', ').includes(role));
+
+        resolve({ ...hero, selectedRole: roleName });
     });
 }
 
-function changeHero(oldHero, index) {
+function displayHero(hero) {
+    const teamDisplay = document.getElementById('teamDisplay');
+    const heroElement = document.createElement('div');
+    heroElement.classList.add('hero');
+    heroElement.innerHTML = `
+        <img src="${hero.img}" alt="${hero.name}" class="fade-in">
+        <div class="complexity">Complejidad: ${hero.complejidad}</div>
+        <p>${hero.name}</p>
+        <p class="role">${hero.selectedRole}</p>
+    `;
+    teamDisplay.appendChild(heroElement);
+
+    // Forzar un reflow antes de añadir la clase fade-in para asegurar que la animación se active
+    heroElement.offsetHeight;
+
+    heroElement.querySelector('img').classList.add('fade-in');
+
+    heroElement.addEventListener('dblclick', () => changeHero(hero, heroElement));
+}
+
+function changeHero(oldHero, heroElement) {
     const selectedHeroes = new Set(Array.from(document.querySelectorAll('.team-display .hero p'))
         .map(p => p.innerText)
         .filter(name => name !== oldHero.name));
@@ -58,45 +101,28 @@ function changeHero(oldHero, index) {
     const roleName = oldHero.selectedRole;
     const criteria = getCriteriaForRole(roleName);
 
-    const heroElements = document.querySelectorAll('.team-display .hero');
-    const heroElement = heroElements[index];
     const heroImg = heroElement.querySelector('img');
     
     // Añadir clase de fade-out
     heroImg.classList.add('fade-out');
 
-    setTimeout(() => {
+    setTimeout(async () => {
         heroImg.classList.remove('fade-out'); // Remover fade-out para reiniciar la animación
-        const intervalId = setInterval(() => {
-            const newHero = getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, roleName === 'Apoyo Primario');
+        const newHero = await getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, roleName === 'Apoyo Primario');
 
-            // Actualizar contenido del héroe temporalmente
-            heroElement.innerHTML = `
-                <img src="${newHero.img}" alt="${newHero.name}" class="fade-in">
-                <div class="complexity">Complejidad: ${newHero.complejidad}</div>
-                <p>${newHero.name}</p>
-                <p class="role">${newHero.selectedRole}</p>
-            `;
-        }, 100); // Intervalo para cambiar héroes rápidamente
+        // Actualizar contenido del héroe final
+        heroElement.innerHTML = `
+            <img src="${newHero.img}" alt="${newHero.name}" class="fade-in">
+            <div class="complexity">Complejidad: ${newHero.complejidad}</div>
+            <p>${newHero.name}</p>
+            <p class="role">${newHero.selectedRole}</p>
+        `;
 
-        setTimeout(() => {
-            clearInterval(intervalId); // Detener el intervalo de cambio rápido
-            const finalHero = getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, roleName === 'Apoyo Primario');
+        const finalHeroImg = heroElement.querySelector('img');
+        finalHeroImg.classList.add('fade-in');
 
-            // Actualizar contenido del héroe final
-            heroElement.innerHTML = `
-                <img src="${finalHero.img}" alt="${finalHero.name}" class="fade-in">
-                <div class="complexity">Complejidad: ${finalHero.complejidad}</div>
-                <p>${finalHero.name}</p>
-                <p class="role">${finalHero.selectedRole}</p>
-            `;
-
-            const finalHeroImg = heroElement.querySelector('img');
-            finalHeroImg.classList.add('fade-in');
-
-            finalHeroImg.addEventListener('dblclick', () => changeHero(finalHero, index));
-        }, 2000); // Duración total de la animación
-    }, 300); // Duración de la animación de fade-out
+        finalHeroImg.addEventListener('dblclick', () => changeHero(newHero, heroElement));
+    }, 500); // Duración de la animación de fade-out
 }
 
 function getCriteriaForRole(roleName) {
@@ -137,5 +163,65 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 300); // The duration of the animation
         });
     });
+});
+
+
+
+//seccion boton generador
+const generateTeamButton = document.getElementById('generateTeamButton');
+let isGenerating = false;
+
+// Función para reproducir el audio con volumen reducido
+function playAudio() {
+    const audio = new Audio('audio/announcer_battle_prepare_01.mp3');
+    audio.volume = 0.5; // Volumen reducido a la mitad
+    audio.play();
+}
+
+function generateTeam() {
+    isGenerating = true;
+    generateTeamButton.textContent = 'Generar de nuevo';
+
+    setTimeout(() => {
+        const selectedHeroes = new Set();
+        const roles = [
+            { name: "Offlane", criteria: ["Tanque", "Tanque, Iniciador"] },
+            { name: "Apoyo Secundario", criteria: ["Support", "Support, Iniciador", "Support, Pusher"] },
+            { name: "Apoyo Primario", criteria: ["Support"], exclusive: true },
+            { name: "Mid", criteria: ["Mid"] },
+            { name: "Carry", criteria: ["Carry"] },
+        ];
+
+        const team = roles.map(role => getRandomUniqueHeroByCriteria(role.criteria, selectedHeroes, role.name, role.exclusive));
+        
+        // Reproducir audio al generar equipo nuevo
+        playAudio();
+        
+        displayTeam(team);
+
+        setTimeout(() => {
+            isGenerating = false;
+            generateTeamButton.textContent = 'Generar de nuevo';
+        }, 1500); // Tiempo ajustado para coincidir con el fade-out en displayTeam()
+    }, 1000); // Tiempo ajustado para simular la generación del equipo
+}
+
+generateTeamButton.addEventListener('click', () => {
+    if (!isGenerating) {
+        generateTeam();
+    } else {
+        // Si se está generando, se podría agregar una lógica para cancelar la generación actual si es necesario
+        // Por ejemplo, clearTimeout() o eliminar setTimeouts pendientes
+    }
+});
+
+// También añadir la reproducción de audio al hacer clic en "Generar de nuevo"
+generateTeamButton.addEventListener('click', () => {
+    if (!isGenerating) {
+        generateTeam();
+    } else {
+        // Si se está generando, se podría agregar una lógica para cancelar la generación actual si es necesario
+        // Por ejemplo, clearTimeout() o eliminar setTimeouts pendientes
+    }
 });
 

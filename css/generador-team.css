@@ -65,7 +65,7 @@ button {
 }
 
 .team-display img {
-    border: 2px solid #ffffff33;
+    border: 2px solid #b3b3b3; /* Color cromado para el borde */
     width: 130px;
     height: 230px;
     object-fit: cover;
@@ -77,10 +77,11 @@ button {
 
 #teamDisplay .hero img:hover {
     transform: scale(0.9);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 16px rgba(54, 54, 54, 0.877); /* Sombra con color cromado */
     filter: blur(1.8px);
-
 }
+
+
 
 @media (max-width: 600px) {
     .team-display img {
@@ -132,14 +133,30 @@ button {
     display: block;
 }
 
-.fade-out {
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+.hero img.fade-in {
+    animation: fadeInAnimation 0.5s ease-in-out forwards;
 }
 
-.fade-in {
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+.hero img.fade-out {
+    animation: fadeOutAnimation 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutAnimation {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 /* .hero img.no-hover:hover {
