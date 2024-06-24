@@ -2,18 +2,19 @@ body {
     transition: background-color 0.5s, color 0.5s;
 }
 
-
-.team-generator {
+.counter-generator {
     text-align: center;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;
-    max-height: 1000px;
+    max-width: 1500px;
+    max-height: 1500px;
     margin: 0 auto;
     transition: all 0.3s ease;
+
 }
-.team-generator:hover {
+
+.counter-generator:hover {
     transform: scale(1.02);
     transition: transform 0.5s, opacity 0.3s, box-shadow 0.3s;
     transition: transform 1.5s;
@@ -28,7 +29,7 @@ button {
     margin-top: 20px;
 }
 
-.team-display p {
+.counter-display p {
     font-size: 85%;
 }
 
@@ -36,35 +37,44 @@ button {
     font-size: 65%;
 }
 
-.team-generator button {
+.counter-generator button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     transition: all 1.3s ease; /* Animación suave */
 }
 
-.team-generator button:hover {
-    color: #ffffff;
+.counter-generator button:hover {  
     transform: scale(1.1);
     transition: transform 1.0s, opacity 0.3s, box-shadow 0.3s;
     transition: transform 1.0s;
 }
 
-.team-display {
+.counter {
     margin-top: 20px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.team-display {
+.counter {
     margin: 10px;
     text-align: center;
     position: relative;
     gap: 2vw;
 }
 
-.team-display img {
+.counter img {
+    border: 2px solid #b3b3b3; /* Color cromado para el borde */
+    width: 130px;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 1.5s, filter 1.5s, box-shadow 1.5s;
+    transition: all 1.3s ease; /* Animación suave */
+}
+.selected-hero img{
     border: 2px solid #b3b3b3; /* Color cromado para el borde */
     width: 130px;
     height: 230px;
@@ -75,26 +85,27 @@ button {
     transition: all 1.3s ease; /* Animación suave */
 }
 
-#teamDisplay .hero img:hover {
+.counter img:hover {
+    transform: scale(0.9);
+    box-shadow: 0 8px 16px rgba(54, 54, 54, 0.877); /* Sombra con color cromado */
+    filter: blur(1.8px);
+}
+.selected-hero img:hover{
     transform: scale(0.9);
     box-shadow: 0 8px 16px rgba(54, 54, 54, 0.877); /* Sombra con color cromado */
     filter: blur(1.8px);
 }
 
-
-
-
-
 @media (max-width: 600px) {
-    .team-display img {
+    .counter-display img {
         width: 65px;
         height: 130px;
     }
-    .team-display {
+    .counter-display {
         font-size: smaller;
         gap: 1vh;
     }
-    .team-display p {
+    .counter-display p {
         font-size: 55%;
     }
     .hero .role {
@@ -103,17 +114,17 @@ button {
 }
 
 @media (max-width: 400px) {
-    .team-display img {
+    .counter-display img {
         width: 50px;
         height: 120px;
     }
-    .team-display p {
+    .counter-display p {
         font-size: 45%;
     }
     .hero .role {
         font-size: 35%;
     }
-    .team-display {
+    .counter-display {
         font-size: smaller;
         gap: 1vh;
     }
@@ -125,7 +136,7 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
+    /* color: #fff; */
     padding: 5px 10px;
     border-radius: 5px;
     white-space: nowrap;
@@ -167,7 +178,6 @@ button {
     }
 }
 
-
 .hero .objective {
     display: none;
     background-color: rgba(0, 0, 0, 0.8);
@@ -182,15 +192,13 @@ button {
 }
 
 .hero.synergy {
-    border: 2px solid rgb(115, 128, 0);
-    box-shadow: 0 0 10px rgb(238, 255, 0);
-    border-radius: 10px;
+    border: 2px solid green;
+    box-shadow: 0 0 10px green;
 }
 
 .hero.trio-synergy {
-    border: 2px solid rgba(119, 0, 255, 0.445);
-    box-shadow: 0 0 10px rgb(98, 0, 255);
-    border-radius: 10px;
+    border: 2px solid blue;
+    box-shadow: 0 0 10px blue;
 }
 
 .tooltip {
@@ -202,98 +210,3 @@ button {
     border-radius: 5px;
     z-index: 1;
 }
-
-
-/* .hero img.no-hover:hover {
-    transform: none;
-    box-shadow: none;
-    filter: none;
-} */
-
-
-
-/* animacion nueva */
-
- /* 1nd borde animacion */ 
-
-/* 
-.animated_card,
-.animated_card2 {
-    display: grid;
-    place-items: center;
-    position: relative;
-    height: 150px; 
-    width: 150px; 
-    background-color: #222;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 20px; 
-}
-
-.animacion {
-    color: rgba(254, 254, 254, 0.1);
-    font-size: 3rem; 
-    z-index: 10;
-}
-
-.animated_card::before {
-    position: absolute;
-    content: '';
-    height: 100%;
-    width: 100%;
-    background: tomato;
-    border-radius: 15px;
-    z-index: -1;
-    transition: 0.3s;
-    animation: animate 2s linear infinite;
-}
-
-.animated_card:hover::before {
-    height: 120%;
-    width: 120%;
-}
-
-@keyframes animate {
-    50% {
-        filter: hue-rotate(340deg);
-    }
-} */
-
-/* .animated_card2 {
-    overflow: hidden;
-}
-
-.animated_card2::before {
-    position: absolute;
-    content: '';
-    width: 50%;
-    height: 180%;
-    background: #fff;
-    transform: rotate(45deg);
-}
-
-.animated_card2:hover::before {
-    animation: animate2 2s linear infinite;
-}
-
-@keyframes animate2 {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.animated_card2::after {
-    position: absolute;
-    content: '';
-    inset: 5px;
-    background: #222;
-    border-radius: 8px;
-} */
-
-
-
-
-

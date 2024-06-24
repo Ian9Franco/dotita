@@ -1,227 +1,231 @@
-let generationInProgress = false; // Variable para controlar si ya hay una generación en curso
+document.addEventListener('DOMContentLoaded', function () {
+    const generateTeamButton = document.getElementById('generateTeamButton');
+    let generationInProgress = false;
 
-document.getElementById('generateTeamButton').addEventListener('click', async () => {
-    if (generationInProgress) {
-        return; // Si ya hay una generación en curso, no hacer nada
-    }
-
-    generationInProgress = true; // Marcar que hay una generación en curso
-
-    const teamDisplay = document.getElementById('teamDisplay');
-    const heroesToRemove = Array.from(teamDisplay.querySelectorAll('.hero'));
-
-    await removeHeroes(heroesToRemove);
-
-    const selectedHeroes = new Set();
-
-    const roles = [
-        { name: "Offlane", criteria: ["Tanque", "Tanque, Iniciador"] },
-        { name: "Apoyo Secundario", criteria: ["Support", "Support, Iniciador", "Support, Pusher"] },
-        { name: "Apoyo Primario", criteria: ["Support"], exclusive: true }, // criterio exclusivo
-        { name: "Mid", criteria: ["Mid"] },
-        { name: "Carry", criteria: ["Carry"] },
-    ];
-
-    for (let i = 0; i < 5; i++) {
-        const roleName = roles[i % roles.length].name;
-        const criteria = getCriteriaForRole(roleName);
-        
-        const hero = await getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, roleName === 'Apoyo Primario');
-        selectedHeroes.add(hero.name);
-        
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
-        
-        displayHero(hero);
-    }
-
-    generationInProgress = false; // Marcar que la generación ha terminado
-});
-
-async function removeHeroes(heroesToRemove) {
-    const fadeOutDuration = 500; // Duración del fade-out en milisegundos
-
-    for (let heroElement of heroesToRemove) {
-        heroElement.querySelector('img').classList.add('fade-out');
-
-        await new Promise(resolve => {
-            setTimeout(() => {
-                heroElement.remove();
-                resolve();
-            }, fadeOutDuration); // Esperar el tiempo de fade-out antes de eliminar el héroe
-        });
-    }
-}
-
-function getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, exclusive = false) {
-    return new Promise(resolve => {
-        const allHeroes = Object.values(heroes).flat();
-        const availableHeroes = allHeroes.filter(hero => {
-            const heroRoles = hero.rol.split(', ');
-            return criteria.some(role => heroRoles.includes(role)) && !selectedHeroes.has(hero.name) && (!exclusive || heroRoles.length === 1);
-        });
-
-        if (availableHeroes.length === 0) {
-            throw new Error(`No hay suficientes héroes para cumplir con el rol requerido: ${roleName}.`);
+    generateTeamButton.addEventListener('click', async () => {
+        if (generationInProgress) {
+            return;
         }
 
-        const hero = availableHeroes[Math.floor(Math.random() * availableHeroes.length)];
-        selectedHeroes.add(hero.name);
+        generationInProgress = true;
+        playAudio();
 
-        const selectedRole = criteria.find(role => hero.rol.split(', ').includes(role));
+        const teamDisplay = document.getElementById('teamDisplay');
+        const heroesToRemove = Array.from(teamDisplay.querySelectorAll('.hero'));
 
-        resolve({ ...hero, selectedRole: roleName });
-    });
-}
+        await removeHeroes(heroesToRemove);
 
-function displayHero(hero) {
-    const teamDisplay = document.getElementById('teamDisplay');
-    const heroElement = document.createElement('div');
-    heroElement.classList.add('hero');
-    heroElement.innerHTML = `
-        <img src="${hero.img}" alt="${hero.name}" class="fade-in">
-        <div class="complexity">Complejidad: ${hero.complejidad}</div>
-        <p>${hero.name}</p>
-        <p class="role">${hero.selectedRole}</p>
-    `;
-    teamDisplay.appendChild(heroElement);
-
-    // Forzar un reflow antes de añadir la clase fade-in para asegurar que la animación se active
-    heroElement.offsetHeight;
-
-    heroElement.querySelector('img').classList.add('fade-in');
-
-    heroElement.addEventListener('dblclick', () => changeHero(hero, heroElement));
-}
-
-function changeHero(oldHero, heroElement) {
-    const selectedHeroes = new Set(Array.from(document.querySelectorAll('.team-display .hero p'))
-        .map(p => p.innerText)
-        .filter(name => name !== oldHero.name));
-
-    const roleName = oldHero.selectedRole;
-    const criteria = getCriteriaForRole(roleName);
-
-    const heroImg = heroElement.querySelector('img');
-    
-    // Añadir clase de fade-out
-    heroImg.classList.add('fade-out');
-
-    setTimeout(async () => {
-        heroImg.classList.remove('fade-out'); // Remover fade-out para reiniciar la animación
-        const newHero = await getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, roleName === 'Apoyo Primario');
-
-        // Actualizar contenido del héroe final
-        heroElement.innerHTML = `
-            <img src="${newHero.img}" alt="${newHero.name}" class="fade-in">
-            <div class="complexity">Complejidad: ${newHero.complejidad}</div>
-            <p>${newHero.name}</p>
-            <p class="role">${newHero.selectedRole}</p>
-        `;
-
-        const finalHeroImg = heroElement.querySelector('img');
-        finalHeroImg.classList.add('fade-in');
-
-        finalHeroImg.addEventListener('dblclick', () => changeHero(newHero, heroElement));
-    }, 500); // Duración de la animación de fade-out
-}
-
-function getCriteriaForRole(roleName) {
-    switch (roleName) {
-        case "Offlane":
-            return ["Tanque", "Tanque, Iniciador"];
-        case "Apoyo Secundario":
-            return ["Support", "Support, Iniciador", "Support, Pusher"];
-        case "Apoyo Primario":
-            return ["Support"];
-        case "Mid":
-            return ["Mid"];
-        case "Carry":
-            return ["Carry"];
-        default:
-            throw new Error(`Rol no reconocido: ${roleName}`);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    var links = document.querySelectorAll('.header-main ul li a');
-
-    links.forEach(function (link) {
-        link.addEventListener('click', function () {
-            // Remove 'active' and 'clicked' classes from all links
-            links.forEach(function (link) {
-                link.classList.remove('active');
-                link.classList.remove('clicked');
-            });
-
-            // Add 'active' and 'clicked' classes to the clicked link
-            this.classList.add('active');
-            this.classList.add('clicked');
-
-            // Remove 'clicked' class after animation ends
-            setTimeout(() => {
-                this.classList.remove('clicked');
-            }, 300); // The duration of the animation
-        });
-    });
-});
-
-
-
-//seccion boton generador
-const generateTeamButton = document.getElementById('generateTeamButton');
-let isGenerating = false;
-
-// Función para reproducir el audio con volumen reducido
-function playAudio() {
-    const audio = new Audio('audio/announcer_battle_prepare_01.mp3');
-    audio.volume = 0.5; // Volumen reducido a la mitad
-    audio.play();
-}
-
-function generateTeam() {
-    isGenerating = true;
-    generateTeamButton.textContent = 'Generar de nuevo';
-
-    setTimeout(() => {
         const selectedHeroes = new Set();
         const roles = [
             { name: "Offlane", criteria: ["Tanque", "Tanque, Iniciador"] },
             { name: "Apoyo Secundario", criteria: ["Support", "Support, Iniciador", "Support, Pusher"] },
             { name: "Apoyo Primario", criteria: ["Support"], exclusive: true },
             { name: "Mid", criteria: ["Mid"] },
-            { name: "Carry", criteria: ["Carry"] },
+            { name: "Carry", criteria: ["Carry"] }
         ];
 
-        const team = roles.map(role => getRandomUniqueHeroByCriteria(role.criteria, selectedHeroes, role.name, role.exclusive));
-        
-        // Reproducir audio al generar equipo nuevo
-        playAudio();
-        
-        displayTeam(team);
+        const team = [];
+        for (const role of roles) {
+            const hero = await getRandomUniqueHeroByCriteria(role.criteria, selectedHeroes, role.name, role.exclusive);
+            selectedHeroes.add(hero.name);
+            team.push(hero);
+        }
 
-        setTimeout(() => {
-            isGenerating = false;
-            generateTeamButton.textContent = 'Generar de nuevo';
-        }, 1500); // Tiempo ajustado para coincidir con el fade-out en displayTeam()
-    }, 1000); // Tiempo ajustado para simular la generación del equipo
-}
+        ensureSynergy(team);
 
-generateTeamButton.addEventListener('click', () => {
-    if (!isGenerating) {
-        generateTeam();
-    } else {
-        // Si se está generando, se podría agregar una lógica para cancelar la generación actual si es necesario
-        // Por ejemplo, clearTimeout() o eliminar setTimeouts pendientes
+        await displayTeam(team);
+
+        generationInProgress = false;
+    });
+
+    async function removeHeroes(heroesToRemove) {
+        for (let heroElement of heroesToRemove) {
+            heroElement.classList.add('fade-out');
+            await new Promise(resolve => setTimeout(resolve, 500)); // Espera a que el fade-out termine
+            heroElement.remove();
+        }
     }
-});
 
-// También añadir la reproducción de audio al hacer clic en "Generar de nuevo"
-generateTeamButton.addEventListener('click', () => {
-    if (!isGenerating) {
-        generateTeam();
-    } else {
-        // Si se está generando, se podría agregar una lógica para cancelar la generación actual si es necesario
-        // Por ejemplo, clearTimeout() o eliminar setTimeouts pendientes
+    function getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, exclusive = false) {
+        return new Promise(resolve => {
+            const availableHeroes = heroes.filter(hero => {
+                const heroRoles = hero.rol.split(', ');
+                return criteria.some(role => heroRoles.includes(role)) && !selectedHeroes.has(hero.name) && (!exclusive || heroRoles.length === 1);
+            });
+
+            if (availableHeroes.length === 0) {
+                throw new Error(`No hay suficientes héroes para cumplir con el rol requerido: ${roleName}.`);
+            }
+
+            const hero = availableHeroes[Math.floor(Math.random() * availableHeroes.length)];
+            resolve({ ...hero, assignedRole: roleName });
+        });
     }
-});
 
+    function displayHero(hero, delay) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                const teamDisplay = document.getElementById('teamDisplay');
+                const heroElement = document.createElement('div');
+                heroElement.classList.add('hero');
+                if (hero.synergy) {
+                    heroElement.classList.add('synergy');
+                }
+                if (hero.trioSynergy) {
+                    heroElement.classList.add('trio-synergy');
+                }
+                heroElement.innerHTML = `
+                    <img src="${hero.img}" alt="${hero.name}">
+                    <p>${hero.name}</p>
+                    <p class="role">${hero.assignedRole}</p>
+                    <div class="objective">${hero.objetivo}</div>
+                `;
+                teamDisplay.appendChild(heroElement);
+
+                heroElement.addEventListener('click', () => playHeroAudio(hero.spawn));
+
+                setTimeout(() => {
+                    heroElement.classList.add('fade-in');
+                    resolve();
+                }, 10);
+
+                heroElement.addEventListener('dblclick', () => changeHero(hero, heroElement));
+            }, delay);
+        });
+    }
+
+    async function displayTeam(team) {
+        for (let i = 0; i < team.length; i++) {
+            await displayHero(team[i], i * 100);
+        }
+    }
+
+    async function changeHero(oldHero, heroElement) {
+        heroElement.classList.remove('fade-in');
+        heroElement.classList.add('fade-out');
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        const selectedHeroes = new Set(Array.from(document.querySelectorAll('.hero p'))
+            .map(p => p.innerText)
+            .filter(name => name !== oldHero.name));
+
+        const roleName = oldHero.assignedRole;
+        const criteria = getCriteriaForRole(roleName);
+
+        const newHero = await getRandomUniqueHeroByCriteria(criteria, selectedHeroes, roleName, roleName === 'Apoyo Primario');
+
+        heroElement.classList.remove('fade-out');
+        heroElement.classList.add('fade-in');
+        heroElement.innerHTML = `
+            <img src="${newHero.img}" alt="${newHero.name}">
+            <p>${newHero.name}</p>
+            <p class="role">${newHero.assignedRole}</p>
+            <div class="objective">${newHero.objetivo}</div>
+        `;
+
+        if (newHero.synergy) {
+            heroElement.classList.add('synergy');
+        } else {
+            heroElement.classList.remove('synergy');
+        }
+
+        if (newHero.trioSynergy) {
+            heroElement.classList.add('trio-synergy');
+        } else {
+            heroElement.classList.remove('trio-synergy');
+        }
+
+        heroElement.addEventListener('click', () => playHeroAudio(newHero.spawn));
+        heroElement.addEventListener('dblclick', () => changeHero(newHero, heroElement));
+    }
+
+    function getCriteriaForRole(roleName) {
+        switch (roleName) {
+            case "Offlane":
+                return ["Tanque", "Tanque, Iniciador"];
+            case "Apoyo Secundario":
+                return ["Support", "Support, Iniciador", "Support, Pusher"];
+            case "Apoyo Primario":
+                return ["Support"];
+            case "Mid":
+                return ["Mid"];
+            case "Carry":
+                return ["Carry"];
+            default:
+                throw new Error(`Rol no reconocido: ${roleName}`);
+        }
+    }
+
+    function ensureSynergy(team) {
+        const synergyGroups = [];
+        const synergyMap = new Map();
+
+        team.forEach(hero => {
+            synergyMap.set(hero.name, []);
+        });
+
+        team.forEach(hero => {
+            if (hero.Sinergia) {
+                hero.Sinergia.forEach(synergyHero => {
+                    if (synergyMap.has(synergyHero.name)) {
+                        synergyMap.get(hero.name).push(synergyHero.name);
+                        synergyMap.get(synergyHero.name).push(hero.name);
+                    }
+                });
+            }
+        });
+
+        team.forEach(hero => {
+            const currentGroup = [hero];
+            const queue = [hero];
+            const visited = new Set([hero.name]);
+
+            while (queue.length > 0) {
+                const currentHero = queue.shift();
+                const synergies = synergyMap.get(currentHero.name) || [];
+
+                synergies.forEach(synergyName => {
+                    if (!visited.has(synergyName)) {
+                        const synergyHero = team.find(h => h.name === synergyName);
+                        if (synergyHero) {
+                            currentGroup.push(synergyHero);
+                            queue.push(synergyHero);
+                            visited.add(synergyName);
+                        }
+                    }
+                });
+            }
+
+            if (currentGroup.length > 1) {
+                synergyGroups.push(currentGroup);
+            }
+        });
+
+        let selectedGroup = [];
+        if (synergyGroups.length > 0) {
+            selectedGroup = synergyGroups.reduce((maxGroup, group) => group.length > maxGroup.length ? group : maxGroup, []);
+        }
+
+        if (selectedGroup.length > 0) {
+            selectedGroup.forEach(hero => {
+                if (selectedGroup.length >= 3) {
+                    hero.trioSynergy = true;
+                } else {
+                    hero.synergy = true;
+                }
+            });
+        }
+    }
+
+    function playAudio() {
+        const audio = new Audio('audio/announcer_battle_prepare_01.mp3');
+        audio.volume = 0.5;
+        audio.play();
+    }
+
+   /*  function playHeroAudio(audioSrc) {
+        const audio = new Audio(audioSrc);
+        audio.volume = 0.5;
+        audio.play();
+    } */
+});

@@ -111,7 +111,6 @@ function generateCombos(size, type, line) {
         }
     };
 
-    // Verifica que 'type' y 'size' existan en 'combos'
     if (!combos[type] || !combos[type][size]) {
         console.error('Tipo o tamaño de combo no válido');
         return [];
@@ -123,6 +122,10 @@ function generateCombos(size, type, line) {
             return null;
         }
         const comboHeroes = combo.slice(0, size).map(heroName => heroes.find(hero => hero.name === heroName));
+        if (comboHeroes.includes(undefined)) {
+            console.error('Héroe no encontrado en el combo:', combo);
+            return null;
+        }
         const comboExplanation = combo[size]; // La explicación es el penúltimo elemento
         const comboLine = combo[size + 1]; // La línea es el último elemento
         return { heroes: comboHeroes, explanation: comboExplanation, line: comboLine };
@@ -130,22 +133,18 @@ function generateCombos(size, type, line) {
 }
 
 function createHeroCard(hero, comboExplanation, comboLane) {
-    // Crear el contenedor del héroe
     const heroDiv = document.createElement('div');
     heroDiv.classList.add('hero');
 
-    // Crear el contenedor para la información de la línea
     const lineContainer = document.createElement('div');
     lineContainer.classList.add('line-container');
     lineContainer.innerHTML = `<p><strong>Línea:</strong> ${comboLane}</p>`;
 
-    // Agregar la imagen del héroe al contenedor
     heroDiv.innerHTML = `
         <img src="${hero.img}" alt="${hero.name}" class="combo-hero-img">
         <p><strong>Rol:</strong> ${hero.rol}</p>
     `;
 
-    // Crear el contenedor de los detalles de sinergia
     const detailsDiv = document.createElement('div');
     detailsDiv.classList.add('hero-details');
     detailsDiv.innerHTML = `
@@ -161,25 +160,23 @@ function createHeroCard(hero, comboExplanation, comboLane) {
             </ul>
         </div>
     `;
-    // Ocultar los detalles por defecto
     detailsDiv.style.display = 'none';
 
-    // Evento de mouseover para mostrar los detalles al pasar el cursor sobre el héroe
     heroDiv.addEventListener('mouseover', () => {
         detailsDiv.style.display = 'block';
     });
 
-    // Evento de mouseout para ocultar los detalles al retirar el cursor del héroe
     heroDiv.addEventListener('mouseout', () => {
         detailsDiv.style.display = 'none';
     });
 
-    // Agregar los detalles al contenedor del héroe
     heroDiv.appendChild(detailsDiv);
+    heroDiv.appendChild(lineContainer);
 
-    // Retornar el contenedor del héroe
     return heroDiv;
 }
+
+
 
 function displayCombos(combos) {
     const comboDisplay = document.querySelector('.combo-display');

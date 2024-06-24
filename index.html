@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="css/plugins/owl.carousel.min.css">
 		<link rel="stylesheet" href="css/plugins/owl.theme.default.min.css">
 		<link rel="stylesheet" href="css/plugins/jquery.animatedheadline.css">
-		
+		<link rel="stylesheet" href="css/generador-de-counter.css">
 		<!-- CSS Base -->
         <link rel="stylesheet" class="back-color" href="css/style-dark.css">
 		<link rel="stylesheet" href="css/style-demo.css">
@@ -271,6 +271,21 @@
 								<div class="header-box mb-50">
 									<h3>Counter Pick</h3>
 								</div>
+								<div class="counter-generator">
+									<h1>Counter pick</h1>
+									<button id="showHeroesButton">Mostrar Héroes</button>
+									<div id="heroesListContainer" style="display: none;">
+										<select id="heroesList"></select>
+										<button id="selectHeroButton">Seleccionar Héroe</button>
+									</div>
+									<div id="selectedHeroDisplay" class="selected-hero"></div>
+									<button id="generateCounterButton">Generar counter</button>
+									<div id="counterDisplay" class="counter"></div>
+									<div id="counterDescContainer">
+										<!-- Aquí se mostrará la descripción del counter -->
+									</div>
+								</div>
+								<!-- eamDispl -->
 							</div>
 						</div>
 					
@@ -533,11 +548,13 @@
 		
 		<!-- All Script -->
 		<script src="js/heroesarray.js"></script>
-		
 		<script src="js/generador-de-combos.js"></script>
-	
 		<script src="js/heroeslist.js"></script>
 		<script src="js/generador-team.js"></script>
+		<script src="js/counter-generator.js"></script>
+
+
+
 		<script src="js/jquery.min.js"></script>
 		<script src="js/isotope.pkgd.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>

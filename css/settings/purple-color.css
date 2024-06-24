@@ -147,3 +147,10 @@ a:focus,
     border: 2px solid #bb68c8;
 
 }
+.selected-hero .hero img:hover{
+    border: 2px solid #bb68c8;
+}
+
+.counter img:hover{
+    border: 5px solid #bb68c8;
+}

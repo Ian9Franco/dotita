@@ -72,6 +72,34 @@ body {
     width: 100%; /* Asegura que ocupen todo el ancho disponible */
 }
 
+.counter-desc {
+    background-color: #d3d3d3;
+    border: 1px solid rgb(177, 177, 177);
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.counter-desc .counterDesc {
+    font-weight: bold;
+}
+
+.counter-desc .description {
+    margin-top: 5px;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.counter-generator{
+	background-color: #d3d3d3;
+}
+.counter-generator button{
+	background-color: #313131;
+	color: #fff;
+	margin: 1%;
+}
+
 option{
 	background-color: rgb(43, 43, 43);
 	color: rgb(177, 177, 177);

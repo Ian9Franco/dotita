@@ -145,3 +145,11 @@ a:focus,
     border: 2px solid #eae328;
 
 }
+
+.selected-hero .hero img:hover{
+    border: 2px solid #eae328;
+}
+
+.counter img:hover{
+    border: 5px solid #eae328;
+}

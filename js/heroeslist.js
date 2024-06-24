@@ -1,4 +1,3 @@
-// Función para mostrar héroes y activar el carrusel para una categoría específica
 function displayAndRotateHeroes(attribute) {
     const heroesContainer = document.getElementById('heroes-container');
     const heroItems = Array.from(heroesContainer.children);
@@ -32,6 +31,13 @@ function displayAndRotateHeroes(attribute) {
                 </div>
             `;
             heroesContainer.appendChild(heroItem);
+
+            // Agregar evento de hover para reproducir el audio con volumen reducido
+            const audio = new Audio(hero.spawn);
+            audio.volume = 0.1; // Reducir el volumen al 20%
+            heroItem.addEventListener('mouseenter', () => {
+                audio.play();
+            });
         });
 
         // Activar el carrusel solo para la categoría seleccionada
@@ -40,11 +46,11 @@ function displayAndRotateHeroes(attribute) {
         }, 5000); // Rotar cada 5 segundos
     }, 100); // Esperar un breve tiempo antes de agregar la clase fade-in
 }
-       
+
 // Llamar a la función para mostrar y rotar héroes por defecto al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     displayAndRotateHeroes('*');
-    
+
     const filterButtons = document.querySelectorAll('#role-filter li');
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -56,54 +62,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const infoIcons = document.querySelectorAll('.info-icon');
 infoIcons.forEach(icon => {
     icon.addEventListener('click', (event) => {
-        // Detener la propagación del evento para evitar que se active el clic en la figura
         event.stopPropagation();
-        
         const heroData = JSON.parse(icon.getAttribute('data-hero'));
-        const modal = document.getElementById('hero-details-modal');
-        const nameElement = document.getElementById('hero-details-name');
-        const roleElement = document.getElementById('hero-details-role');
-        const comboElement = document.getElementById('hero-details-combo');
-        
-        nameElement.textContent = `Nombre: ${heroData.name}`;
-        roleElement.textContent = `Rol: ${heroData.rol}`;
-        comboElement.textContent = `Combo: ${heroData.combo || 'N/A'}`; // Mostrar "N/A" si no hay información de combo
-        
-        modal.style.display = 'block';
+        console.log(heroData);
+        // Aquí podrías mostrar más detalles sobre el héroe
     });
-    
+
     // Agregar interacción de hover al icono
     icon.addEventListener('mouseenter', () => {
-        // Aquí puedes agregar estilos o cualquier otra interacción que desees
-        // Por ejemplo, cambiar el color o el tamaño del icono cuando el usuario pasa el ratón sobre él
         icon.style.color = 'red';
     });
-    
+
     icon.addEventListener('mouseleave', () => {
-        // Restaurar los estilos cuando el usuario deja de pasar el ratón sobre el icono
-        icon.style.color = ''; // Esto restablece el color a su valor predeterminado
+        icon.style.color = '';
     });
 });
- // Agregar un evento clic al icono de información
- const infoIcons = document.querySelectorAll('.info-icon');
- infoIcons.forEach(icon => {
-     icon.addEventListener('click', (event) => {
-         event.stopPropagation();
-         const heroData = JSON.parse(icon.getAttribute('data-hero'));
-         console.log(heroData);
-         // Aquí podrías mostrar más detalles sobre el héroe
-     });
-
-     // Agregar interacción de hover al icono
-     icon.addEventListener('mouseenter', () => {
-         icon.style.color = 'red';
-     });
-
-     icon.addEventListener('mouseleave', () => {
-         icon.style.color = '';
-     });
- });
 
 // Resto del código...

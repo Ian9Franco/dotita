@@ -64,6 +64,9 @@ body {
 .team-generator{
 	background-color:  #202020;
 }
+.counter-generator{
+	background-color: #202020;
+}
 .team-generator button{
 	background-color: #cecece;
 	color: #000;
@@ -79,6 +82,33 @@ body {
     text-align: left; /* Alinea el texto a la izquierda dentro de cada etiqueta */
     width: 100%; /* Asegura que ocupen todo el ancho disponible */
 }
+.counter-generator button{
+	background-color: #cecece;
+	color: #000;
+	margin: 1%;
+}
+
+
+.counter-desc {
+    background-color: #202020;
+    border: 1px solid rgb(177, 177, 177);
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.counter-desc .counterDesc {
+    font-weight: bold;
+}
+
+.counter-desc .description {
+    margin-top: 5px;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
 
 option{
 	background-color: rgb(43, 43, 43);
