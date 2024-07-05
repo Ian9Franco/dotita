@@ -13,7 +13,7 @@
 .pt-home .social {
 	right: 20px !important;	
 }
-
+.pt-combos,
 .pt-generadores, 
 .pt-resume, 
 .pt-heroes, 
@@ -23,7 +23,7 @@
 	-ms-transform: translateX(200%) !important;
 	transform: translateX(200%) !important;
 }
-
+#combos:target .pt-combos,
 #generadores:target .pt-generadores,
 #resume:target .pt-resume,
 #heroes:target .pt-heroes,
@@ -54,6 +54,7 @@
 	.header-main.on {
         left: 0px !important;
     }
+	#combos:target .pt-combos,
 	#generadores:target .pt-generadores,
 	#resume:target .pt-resume,
 	#heroes:target .pt-heroes,

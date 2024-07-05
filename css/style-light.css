@@ -921,7 +921,7 @@ blockquote span img {
     left: 0;
 }
 
-/* Glitch */
+/* Glitch blur */
 .glitch {
 	position: absolute;
  	width: 100%;
@@ -948,7 +948,7 @@ blockquote span img {
 	-o-transition: all .6s cubic-bezier(.5, .2, .2, 1.1);  
 	transition: all .6s cubic-bezier(.5, .2, .2, 1.1);
 }
-
+#combos:target .pt-home,
 #generadores:target .pt-home, 
 #resume:target .pt-home,
 #heroes:target .pt-home,
@@ -965,7 +965,8 @@ blockquote span img {
 .pt-resume, 
 .pt-heroes, 
 .pt-blog,
-.pt-contact {
+.pt-contact,
+.pt-combos {
 	background-color: #f0f1f5;
 }
 .page .header-page {
@@ -1125,7 +1126,8 @@ blockquote span img {
 #resume:target .header-main ul li a,
 #heroes:target .header-main ul li a,
 #blog:target .header-main ul li a,
-#contact:target .header-main ul li a {
+#contact:target .header-main ul li a,
+#combos:target .header-main ul li a {
     -webkit-transform: scale(.8);
     -ms-transform: scale(.8);
     transform: scale(.8);
@@ -1135,7 +1137,8 @@ blockquote span img {
 #resume:target .icon-r,
 #heroes:target .icon-p,
 #blog:target .icon-b,
-#contact:target .icon-c {
+#contact:target .icon-c,
+#combos:target .icon-a {
     color: #fff;
     -webkit-transform: scale(1.3) !important;
     -ms-transform: scale(1.3) !important;
@@ -2646,7 +2649,8 @@ blockquote span img {
 	#resume:target .pt-resume,
 	#heroes:target .pt-heroes,
 	#blog:target .pt-blog,
-	#contact:target .pt-contact {
+	#contact:target .pt-contact,
+	#combos:target .pt-combos {
 		-webkit-transform: translateX(0);
     	-ms-transform: translateX(0);
     	transform: translateX(0);
